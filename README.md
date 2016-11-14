@@ -2,15 +2,15 @@
 
 simple app from some hackathon quest
 
-Plan for develop (must be things):
+Plan for develop ("must be" things):
 * Whole colony state statistics:
   * real time;
-* Alien colonists jobs:
-  * create new, edit, delete;
-  * manage statistics by job;
 * Alian colonists data:
   * create new, edit, delete;
   * (?) manage statistics of anyone of colonists;
+* Alien colonists jobs:
+  * create new, edit, delete;
+  * manage statistics by job;
 * Emergency emulating (enemy attack, earthquake, diseases, ets.):
   * create new;
   * colony reaction on emerency;
