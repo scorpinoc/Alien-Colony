@@ -7,9 +7,20 @@ using Data.Data;
 
 namespace Data.ConsoleTest
 {
-    public static class ColonistTest
+    static public class ColonistTest
     {
         static public string StringKey(this Colonist obj)
-            => $"name: {obj.Name} position: {{{obj.Position.Y}, {obj.Position.Y}}}";
+            => $"colonist name: {obj.Name} job: {obj.JobName} position: {{{obj.Position.Y}, {obj.Position.Y}}}";
+
+        static public void Print(this IEnumerable<Colonist> objs)
+        {
+            foreach (var i in objs)
+                Console.WriteLine(i.StringKey());
+        }
+        static public void Work(this IEnumerable<Colonist> objs)
+        {
+            foreach (var i in objs)
+                i.Work();
+        }
     }
 }

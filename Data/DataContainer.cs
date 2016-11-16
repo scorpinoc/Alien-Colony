@@ -9,11 +9,18 @@ namespace Data
 {
     public class DataContainer
     {
-        private IEnumerable<Colonist> colonist = new Colonist[]{
-            new Colonist("colonist A"),
-            new Colonist("colonist B")
-        };
 
-        public IEnumerable<Colonist> Colonist => colonist;
+        private List<Colonist> colonists;
+
+        public IEnumerable<Colonist> Colonist => colonists;
+
+        public void LoadForTest()
+        {
+            colonists = new List<Colonist>{
+                new Colonist("A", new Position(10, 10)),
+                new Colonist("B", new Position(10, 10)),
+                new Colonist("C", new Position(10, 10))
+            };
+        }
     }
 }

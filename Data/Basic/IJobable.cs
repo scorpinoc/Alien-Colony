@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Data.Basic
 {
-    public interface INameble
+    public interface IJobable : INameble
     {
-        string Name { get; }
+        void Work(Colonist worker);
     }
 }
