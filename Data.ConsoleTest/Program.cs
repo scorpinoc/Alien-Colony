@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,15 @@ namespace Data.ConsoleTest
         static void Main(string[] args)
         {
             var data = new DataContainer();
-            data.LoadForTest();
-
+            LoadForTest(data);
+            
             var test = data.Colonist;
 
-            WriteLine("starting status");
+            WriteLine("starting Colonists status");
             test.Print();
 
-            WriteLine("moving");
-            for (int i = 0, n = new Random().Next(10, 20); i < n; ++i)
+            WriteLine("\nmoving");
+            for (int i = 0, n = new Random().Next(10, 25); i < n; ++i)
             {
                 WriteLine("\tTick {0}", i);
                 test.Work();
@@ -28,6 +29,13 @@ namespace Data.ConsoleTest
             }
 
             ReadKey(true);
+        }
+
+        private static void LoadForTest(DataContainer data)
+        {
+            char c = 'A';
+            for (int i = 0; i < 5; ++i)
+                data.Add(new Colonist((c++).ToString(), new Position(10, 10)));
         }
     }
 }

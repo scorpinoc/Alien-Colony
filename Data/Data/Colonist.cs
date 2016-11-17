@@ -10,6 +10,10 @@ namespace Data.Data
 {
     public class Colonist : INameble
     {
+        #region static
+        static Random rand = new Random();
+        #endregion
+
         #region constants
 
         /// <summary>
@@ -27,11 +31,38 @@ namespace Data.Data
             NorthWest,
         }
 
+        /// <summary>
+        /// current status - what <see cref="Colonist"/> doing
+        /// </summary>
+        public enum Doing
+        {
+            Sleep,
+            Work,
+        }
+
+        const int minimalEnergy = 10;
+        const int minimalEnergyX2 = minimalEnergy * 2;
+        const int maximumEnergy = 100;
         #endregion
 
         #region fields
 
+        #region active
         private IJobable job;
+
+        private uint energy;
+
+        private Doing current;
+        #endregion
+
+        #region constant - limits
+        private readonly uint maxEnergy;
+        #endregion
+
+        #region dynamic - can be changed on each tick
+        private int energyUp = 0;
+        private int energyDown = 0;
+        #endregion
 
         #endregion
 
@@ -42,6 +73,11 @@ namespace Data.Data
         public Position Position { get; }
 
         public string JobName => job.Name;
+
+        public uint Energy => energy;
+        public double EnergyPersent => energy / (double)maxEnergy;
+
+        public Doing currentDo => current;
 
         #endregion
 
@@ -61,6 +97,9 @@ namespace Data.Data
             Name = name;
             Position = position;
             this.job = job;
+
+            energy = maxEnergy = (uint)rand.Next(minimalEnergyX2, maximumEnergy);
+            current = Doing.Work;
         }
 
         #endregion
@@ -75,8 +114,8 @@ namespace Data.Data
         {
             // TODO : may be rework
             // TODO : what to do if no moving (using random move) - invalid direction
-            Direction vertical = direction;
-            Direction horisontal = direction;
+            Direction vertical;
+            Direction horisontal;
             switch (direction)
             {
                 case Direction.NorthEast:
@@ -96,6 +135,8 @@ namespace Data.Data
                     horisontal = Direction.West;
                     break;
                 default:
+                    vertical = direction;
+                    horisontal = direction;
                     break;
             }
 
@@ -124,9 +165,39 @@ namespace Data.Data
         }
 
         /// <summary>
-        /// <see cref="Colonist"/> job tick activation
+        /// <see cref="Colonist"/> tick activation
+        /// parameters changes + job activation
         /// </summary>
-        public void Work() => job.Work(this);
+        public void Tick()
+        {
+            EnergyTick();
+
+            job.Work(this);
+        }
+
+        private void EnergyTick()
+        {
+            if (current == Doing.Sleep)
+            {
+                energy += (uint)rand.Next(0, ++energyUp);
+                if (energy >= maxEnergy)
+                {
+                    energy = maxEnergy;
+                    current = Doing.Work;
+                    energyUp = 0;
+                }
+            }
+            else
+            {
+                try { checked { energy -= (uint)rand.Next(0, ++energyDown); } }
+                catch { energy = 0; }
+                if (energy < minimalEnergy)
+                {
+                    current = Doing.Sleep;
+                    energyDown = 0;
+                }
+            }
+        }
 
         #endregion
     }

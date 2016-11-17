@@ -10,7 +10,8 @@ namespace Data.ConsoleTest
     static public class ColonistTest
     {
         static public string StringKey(this Colonist obj)
-            => $"colonist name: {obj.Name} job: {obj.JobName} position: {{{obj.Position.Y}, {obj.Position.Y}}}";
+            => $"\"{obj.Name}\" job: {obj.JobName}; doing: {obj.currentDo};"
+            + $"\n\tstatus - energy: {{{obj.Energy} | {obj.EnergyPersent * 100:f1}%}}; pos: {{{obj.Position.X}, {obj.Position.Y}}};";
 
         static public void Print(this IEnumerable<Colonist> objs)
         {
@@ -20,7 +21,7 @@ namespace Data.ConsoleTest
         static public void Work(this IEnumerable<Colonist> objs)
         {
             foreach (var i in objs)
-                i.Work();
+                i.Tick();
         }
     }
 }
