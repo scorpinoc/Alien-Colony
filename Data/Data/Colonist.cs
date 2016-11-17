@@ -56,12 +56,13 @@ namespace Data.Data
         #endregion
 
         #region constant - limits
-        private readonly uint maxEnergy;
+        private uint maxEnergy;     // readonly
+        private int minEnergyTick; // readonly
         #endregion
 
         #region dynamic - can be changed on each tick
-        private int energyUp = 0;
-        private int energyDown = 0;
+        private int energyUp;
+        private int energyDown;
         #endregion
 
         #endregion
@@ -92,14 +93,38 @@ namespace Data.Data
 
         { }
 
+        /// <summary>
+        /// child generation constructor
+        /// </summary>
+        public Colonist(string name, Colonist parentA, Colonist parentB)
+            : this(name, new Position(parentA.Position), rand.Next(1) == 0 ? parentA.job : parentB.job)
+        {
+            #region energy
+            int min = (int)Math.Max(Math.Min(parentA.maxEnergy, parentB.maxEnergy) * 0.9, minimalEnergyX2);
+            int max = (int)(Math.Max(parentA.maxEnergy, parentB.maxEnergy) * 1.1);
+            InitializeEnergy(min, max);
+            #endregion
+        }
+
         public Colonist(string name, Position position, IJobable job)
         {
             Name = name;
             Position = position;
             this.job = job;
 
-            energy = maxEnergy = (uint)rand.Next(minimalEnergyX2, maximumEnergy);
+            #region energy
+            InitializeEnergy(minimalEnergyX2, maximumEnergy);
+            #endregion
+
             current = Doing.Work;
+        }
+        
+        // TODO : rework to energy class
+        private void InitializeEnergy(int min, int max)
+        {
+            energy = maxEnergy = (uint)rand.Next(min, max);
+            minEnergyTick = (int)(maxEnergy * 0.1);
+            energyUp = energyDown = minEnergyTick;
         }
 
         #endregion
@@ -183,8 +208,8 @@ namespace Data.Data
                 if (energy >= maxEnergy)
                 {
                     energy = maxEnergy;
+                    energyUp = minEnergyTick;
                     current = Doing.Work;
-                    energyUp = 0;
                 }
             }
             else
@@ -193,8 +218,8 @@ namespace Data.Data
                 catch { energy = 0; }
                 if (energy < minimalEnergy)
                 {
+                    energyDown = minEnergyTick;
                     current = Doing.Sleep;
-                    energyDown = 0;
                 }
             }
         }

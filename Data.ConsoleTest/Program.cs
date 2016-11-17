@@ -13,11 +13,23 @@ namespace Data.ConsoleTest
         static void Main(string[] args)
         {
             var data = new DataContainer();
-            LoadForTest(data);
-            
-            var test = data.Colonist;
+            BasicTest(data);
+            Test(data.Colonist, "basic");
 
-            WriteLine("starting Colonists status");
+            ReadKey(true);
+
+            data = new DataContainer();
+            ChildTest(data);
+            Test(data.Colonist, "child");
+
+            ReadKey(true);
+        }
+
+        private static void Test(IEnumerable<Colonist> test, string testName)
+        {
+            Clear();
+
+            WriteLine("starting Colonists status for \"{0}\" test", testName);
             test.Print();
 
             WriteLine("\nmoving");
@@ -27,15 +39,24 @@ namespace Data.ConsoleTest
                 test.Work();
                 test.Print();
             }
-
-            ReadKey(true);
         }
 
-        private static void LoadForTest(DataContainer data)
+        private static void BasicTest(DataContainer data)
         {
             char c = 'A';
             for (int i = 0; i < 5; ++i)
                 data.Add(new Colonist((c++).ToString(), new Position(10, 10)));
+        }
+
+        private static void ChildTest(DataContainer data)
+        {
+            char c = 'A';
+            var a = new Colonist((c++).ToString(), new Position(10, 10));
+            var b = new Colonist((c++).ToString(), new Position(10, 10));
+            var child = new Colonist($"{a.Name}&{b.Name} child", a, b);
+            data.Add(a);
+            data.Add(b);
+            data.Add(child);
         }
     }
 }

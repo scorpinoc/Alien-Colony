@@ -9,6 +9,10 @@
             : this(0, 0)
         { }
 
+        public Position(Position obj)
+            : this(obj.X, obj.Y)
+        { }
+
         public Position(uint x, uint y)
         {
             X = x;
