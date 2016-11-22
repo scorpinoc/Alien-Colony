@@ -36,94 +36,75 @@ namespace Data.Data
             Sleep,
             Work,
         }
-
-        const int minimalEnergy = 10;
-        const int minimalEnergyX2 = minimalEnergy * 2;
-        const int maximumEnergy = 100;
         #endregion
 
         #region fields
-
-        #region active
         private readonly IJobable _job;
-
-        #endregion
-
-        #region constant - limits
-        private uint maxEnergy;     // readonly
-        private int minEnergyTick; // readonly
-        #endregion
-
-        #region dynamic - can be changed on each tick
-        private int energyUp;
-        private int energyDown;
-
-        #endregion
-
+        private readonly ColonistEnergy _energy;
         #endregion
 
         #region properties
-        
+
+        #region auto
         public string Name { get; }
-
         public Position Position { get; }
+        public Doing CurrentDoing { get; private set; }
+        #endregion
 
+        #region delegate
         public string JobName => _job.Name;
 
-        public uint Energy { get; private set; }
-
-        public double EnergyPersent => Energy / (double)maxEnergy;
-
-        public Doing CurrentDoing { get; private set; }
+        public uint Energy => _energy.Energy;
+        public double EnergyPersent => _energy.EnergyPersent;
+        #endregion
 
         #endregion
 
         #region constructors
-
         public Colonist(string name)
             : this(name, new Position())
         { }
 
         public Colonist(string name, Position position)
             : this(name, position, new MoveTest() /* TODO : change to basic _job*/)
+        { }
 
+        public Colonist(string name, Position position, IJobable job)
+            : this(name, position, job, new ColonistEnergy())
         { }
 
         /// <summary>
         /// child generation constructor
         /// </summary>
         public Colonist(string name, Colonist parentA, Colonist parentB)
-            : this(name, new Position(parentA.Position), Rand.Next(1) == 0 ? parentA._job : parentB._job)
-        {
-            #region energy
-            var min = (int)Math.Max(Math.Min(parentA.maxEnergy, parentB.maxEnergy) * 0.9, minimalEnergyX2);
-            var max = (int)(Math.Max(parentA.maxEnergy, parentB.maxEnergy) * 1.1);
-            InitializeEnergy(min, max);
-            #endregion
-        }
+            : this(name: name, position: new Position(parentA.Position),
+                  job: Rand.Next(1) == 0 ? parentA._job : parentB._job,
+                  energy: new ColonistEnergy(parentA._energy, parentB._energy))
+        { }
 
-        public Colonist(string name, Position position, IJobable job)
+        /// <summary>
+        /// full constructor
+        /// </summary>
+        private Colonist(string name, Position position, IJobable job, ColonistEnergy energy)
         {
+            #region check
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException($"{nameof(Name)}");
+            if (position == null)
+                throw new ArgumentNullException($"{nameof(Position)}");
+            if (job == null)
+                throw new ArgumentNullException($"{nameof(_job)}");
+            if (energy == null)
+                throw new ArgumentNullException($"{nameof(_energy)}");
+            #endregion
+
             Name = name;
             Position = position;
-            this._job = job;
-
-            #region energy
-            InitializeEnergy(minimalEnergyX2, maximumEnergy);
-            #endregion
+            _job = job;
+            _energy = energy;
 
             CurrentDoing = Doing.Work;
         }
-        
-        // TODO : rework to energy class
-        private void InitializeEnergy(int min, int max)
-        {
-            Energy = maxEnergy = (uint)Rand.Next(min, max);
-            minEnergyTick = (int)(maxEnergy * 0.1);
-            energyUp = energyDown = minEnergyTick;
-            throw new NotImplementedException();
-        }
-
         #endregion
 
         #region methods
@@ -134,51 +115,94 @@ namespace Data.Data
         /// <param name="direction"><see cref="Direction"/> of moving</param>
         public void Move(Direction direction)
         {
-            // TODO : may be rework
-            // TODO : what to do if no moving (using random move) - invalid direction
-            Direction vertical;
-            Direction horisontal;
-            switch (direction)
+            /* TODO : may be rework 
+             and what to do if no moving (using random move) - invalid direction */
+            while (true)
             {
-                case Direction.NorthEast:
-                    vertical = Direction.North;
-                    horisontal = Direction.East;
-                    break;
-                case Direction.SouthEast:
-                    vertical = Direction.South;
-                    horisontal = Direction.East;
-                    break;
-                case Direction.SouthWest:
-                    vertical = Direction.South;
-                    horisontal = Direction.West;
-                    break;
-                case Direction.NorthWest:
-                    vertical = Direction.North;
-                    horisontal = Direction.West;
-                    break;
-                default:
-                    vertical = direction;
-                    horisontal = direction;
-                    break;
-            }
+                switch (direction)
+                {
+                    case Direction.North:
+                        if (Position.Y > 0) --Position.Y;
+                        break;
+                    case Direction.NorthEast:
+                        Move(Direction.North);
+                        direction = Direction.East;
+                        continue;
+                    case Direction.East:
+                        if (Position.X > 0) --Position.X;
+                        break;
+                    case Direction.SouthEast:
+                        Move(Direction.South);
+                        direction = Direction.East;
+                        continue;
+                    case Direction.South:
+                        if (Position.Y < 1000) ++Position.Y;
+                        break;
+                    case Direction.SouthWest:
+                        Move(Direction.South);
+                        direction = Direction.West;
+                        continue;
+                    case Direction.West:
+                        if (Position.X < 1000) ++Position.X;
+                        break;
+                    case Direction.NorthWest:
+                        Move(Direction.North);
+                        direction = Direction.West;
+                        continue;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+                }
 
-            switch (vertical)
-            {
-                case Direction.North:
-                    if (Position.Y > 0) --Position.Y;
-                    break;
-                case Direction.South:
-                    if (Position.Y < 1000) ++Position.Y;
-                    break;
-            }
-            switch (horisontal)
-            {
-                case Direction.East:
-                    if (Position.X > 0) --Position.X;
-                    break;
-                case Direction.West:
-                    if (Position.X < 1000) ++Position.X;
-                    break;
+                #region Old version
+
+                //Direction vertical;
+                //Direction horisontal;
+                //switch (direction)
+                //{
+                //    case Direction.NorthEast:
+                //        vertical = Direction.North;
+                //        horisontal = Direction.East;
+                //        break;
+                //    case Direction.SouthEast:
+                //        vertical = Direction.South;
+                //        horisontal = Direction.East;
+                //        break;
+                //    case Direction.SouthWest:
+                //        vertical = Direction.South;
+                //        horisontal = Direction.West;
+                //        break;
+                //    case Direction.NorthWest:
+                //        vertical = Direction.North;
+                //        horisontal = Direction.West;
+                //        break;
+                //    default:
+                //        vertical = direction;
+                //        horisontal = direction;
+                //        break;
+                //}
+
+                //switch (vertical)
+                //{
+                //    case Direction.North:
+                //        if (Position.Y > 0) --Position.Y;
+                //        break;
+                //    case Direction.South:
+                //        if (Position.Y < 1000) ++Position.Y;
+                //        break;
+                //}
+                //switch (horisontal)
+                //{
+                //    case Direction.East:
+                //        if (Position.X > 0) --Position.X;
+                //        break;
+                //    case Direction.West:
+                //        if (Position.X < 1000) ++Position.X;
+                //        break;
+                //} 
+
+                #endregion
+
+                break;
             }
         }
 
@@ -195,22 +219,10 @@ namespace Data.Data
 
         private void EnergyTick()
         {
-            if (CurrentDoing == Doing.Sleep)
-            {
-                Energy += (uint)Rand.Next(0, ++energyUp);
-                if (Energy < maxEnergy) return;
-                Energy = maxEnergy;
-                energyUp = minEnergyTick;
+            if (CurrentDoing == Doing.Sleep && !_energy.Tick(true))
                 CurrentDoing = Doing.Work;
-            }
-            else
-            {
-                try { checked { Energy -= (uint)Rand.Next(0, ++energyDown); } }
-                catch { Energy = 0; }
-                if (Energy >= minimalEnergy) return;
-                energyDown = minEnergyTick;
+            else if (CurrentDoing == Doing.Work && !_energy.Tick(false))
                 CurrentDoing = Doing.Sleep;
-            }
         }
 
         #endregion

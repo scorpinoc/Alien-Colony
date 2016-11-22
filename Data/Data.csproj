@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Common\ColonistEnergy.cs" />
     <Compile Include="Interfaces\IJobable.cs" />
     <Compile Include="Interfaces\INameble.cs" />
     <Compile Include="Data\Colonist.cs" />

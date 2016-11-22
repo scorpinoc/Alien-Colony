@@ -14,7 +14,10 @@ namespace Data.Data.Jobs
         public string Name => "MoveTestJob";
 
         public void Work(Colonist worker)
-            => worker?.Move((Direction)Rand.Next((int)Direction.North, (int)Direction.NorthWest));
+        {
+            if (worker?.CurrentDoing == Doing.Work)
+                worker.Move((Direction)Rand.Next((int)Direction.North, (int)Direction.NorthWest));
+        }
     }
 
 }

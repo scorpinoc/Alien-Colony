@@ -9,7 +9,7 @@ namespace Data.ConsoleTest
         public static string StringKey(this Colonist obj)
             => $"\"{obj.Name}\" job: {obj.JobName}; doing: {obj.CurrentDoing};"
                +
-               $"\n\tstatus - energy: {{{obj.Energy} | {obj.EnergyPersent*100:f1}%}}; pos: {{{obj.Position.X}, {obj.Position.Y}}};";
+               $"\n\tstatus - energy: {{{obj.Energy} | {obj.EnergyPersent:f1}%}}; pos: {{{obj.Position.X}, {obj.Position.Y}}};";
 
         public static void Print(this IEnumerable<Colonist> objs)
         {

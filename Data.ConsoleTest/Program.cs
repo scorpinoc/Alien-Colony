@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Data.Data.Common;
+using Data.Data.Jobs;
 using static System.Console;
 
 namespace Data.ConsoleTest
@@ -24,12 +25,12 @@ namespace Data.ConsoleTest
             ReadKey(true);
         }
 
-        private static void Test(IEnumerable<Colonist> test, string testName)
+        private static void Test(IEnumerable<Colonist> testData, string testName)
         {
             Clear();
 
             WriteLine("starting Colonists status for \"{0}\" test", testName);
-            var colonists = test as IList<Colonist> ?? test.ToList();
+            var colonists = testData as IList<Colonist> ?? testData.ToList();
             colonists.Print();
 
             WriteLine("\nmoving");
@@ -45,14 +46,14 @@ namespace Data.ConsoleTest
         {
             var c = 'A';
             for (var i = 0; i < 5; ++i)
-                data.Add(new Colonist((c++).ToString(), new Position(10, 10)));
+                data.Add(new Colonist((c++).ToString(), new Position(10, 10), new MoveTest()));
         }
 
         private static void ChildTest(DataContainer data)
         {
             var c = 'A';
-            var a = new Colonist((c++).ToString(), new Position(10, 10));
-            var b = new Colonist((c).ToString(), new Position(10, 10));
+            var a = new Colonist((c++).ToString(), new Position(10, 10), new MoveTest());
+            var b = new Colonist((c).ToString(), new Position(10, 10), new MoveTest());
             var child = new Colonist($"{a.Name}&{b.Name} child", a, b);
             data.Add(a);
             data.Add(b);
