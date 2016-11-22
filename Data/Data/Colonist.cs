@@ -1,17 +1,14 @@
-﻿using Data.Basic;
-using Data.Data.Jobs;
+﻿using Data.Data.Jobs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Data.Data.Common;
+using Data.Interfaces;
 
 namespace Data.Data
 {
     public class Colonist : INameble
     {
         #region static
-        static Random rand = new Random();
+        private static readonly Random Rand = new Random();
         #endregion
 
         #region constants
@@ -32,7 +29,7 @@ namespace Data.Data
         }
 
         /// <summary>
-        /// current status - what <see cref="Colonist"/> doing
+        /// _current status - what <see cref="Colonist"/> doing
         /// </summary>
         public enum Doing
         {
@@ -48,11 +45,8 @@ namespace Data.Data
         #region fields
 
         #region active
-        private IJobable job;
+        private readonly IJobable _job;
 
-        private uint energy;
-
-        private Doing current;
         #endregion
 
         #region constant - limits
@@ -63,22 +57,24 @@ namespace Data.Data
         #region dynamic - can be changed on each tick
         private int energyUp;
         private int energyDown;
+
         #endregion
 
         #endregion
 
         #region properties
-
+        
         public string Name { get; }
 
         public Position Position { get; }
 
-        public string JobName => job.Name;
+        public string JobName => _job.Name;
 
-        public uint Energy => energy;
-        public double EnergyPersent => energy / (double)maxEnergy;
+        public uint Energy { get; private set; }
 
-        public Doing currentDo => current;
+        public double EnergyPersent => Energy / (double)maxEnergy;
+
+        public Doing CurrentDoing { get; private set; }
 
         #endregion
 
@@ -89,7 +85,7 @@ namespace Data.Data
         { }
 
         public Colonist(string name, Position position)
-            : this(name, position, new MoveTest() /* TODO : change to basic job*/)
+            : this(name, position, new MoveTest() /* TODO : change to basic _job*/)
 
         { }
 
@@ -97,11 +93,11 @@ namespace Data.Data
         /// child generation constructor
         /// </summary>
         public Colonist(string name, Colonist parentA, Colonist parentB)
-            : this(name, new Position(parentA.Position), rand.Next(1) == 0 ? parentA.job : parentB.job)
+            : this(name, new Position(parentA.Position), Rand.Next(1) == 0 ? parentA._job : parentB._job)
         {
             #region energy
-            int min = (int)Math.Max(Math.Min(parentA.maxEnergy, parentB.maxEnergy) * 0.9, minimalEnergyX2);
-            int max = (int)(Math.Max(parentA.maxEnergy, parentB.maxEnergy) * 1.1);
+            var min = (int)Math.Max(Math.Min(parentA.maxEnergy, parentB.maxEnergy) * 0.9, minimalEnergyX2);
+            var max = (int)(Math.Max(parentA.maxEnergy, parentB.maxEnergy) * 1.1);
             InitializeEnergy(min, max);
             #endregion
         }
@@ -110,21 +106,22 @@ namespace Data.Data
         {
             Name = name;
             Position = position;
-            this.job = job;
+            this._job = job;
 
             #region energy
             InitializeEnergy(minimalEnergyX2, maximumEnergy);
             #endregion
 
-            current = Doing.Work;
+            CurrentDoing = Doing.Work;
         }
         
         // TODO : rework to energy class
         private void InitializeEnergy(int min, int max)
         {
-            energy = maxEnergy = (uint)rand.Next(min, max);
+            Energy = maxEnergy = (uint)Rand.Next(min, max);
             minEnergyTick = (int)(maxEnergy * 0.1);
             energyUp = energyDown = minEnergyTick;
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -173,8 +170,6 @@ namespace Data.Data
                 case Direction.South:
                     if (Position.Y < 1000) ++Position.Y;
                     break;
-                default:
-                    break;
             }
             switch (horisontal)
             {
@@ -184,43 +179,37 @@ namespace Data.Data
                 case Direction.West:
                     if (Position.X < 1000) ++Position.X;
                     break;
-                default:
-                    break;
             }
         }
 
         /// <summary>
         /// <see cref="Colonist"/> tick activation
-        /// parameters changes + job activation
+        /// parameters changes + _job activation
         /// </summary>
         public void Tick()
         {
             EnergyTick();
 
-            job.Work(this);
+            _job.Work(this);
         }
 
         private void EnergyTick()
         {
-            if (current == Doing.Sleep)
+            if (CurrentDoing == Doing.Sleep)
             {
-                energy += (uint)rand.Next(0, ++energyUp);
-                if (energy >= maxEnergy)
-                {
-                    energy = maxEnergy;
-                    energyUp = minEnergyTick;
-                    current = Doing.Work;
-                }
+                Energy += (uint)Rand.Next(0, ++energyUp);
+                if (Energy < maxEnergy) return;
+                Energy = maxEnergy;
+                energyUp = minEnergyTick;
+                CurrentDoing = Doing.Work;
             }
             else
             {
-                try { checked { energy -= (uint)rand.Next(0, ++energyDown); } }
-                catch { energy = 0; }
-                if (energy < minimalEnergy)
-                {
-                    energyDown = minEnergyTick;
-                    current = Doing.Sleep;
-                }
+                try { checked { Energy -= (uint)Rand.Next(0, ++energyDown); } }
+                catch { Energy = 0; }
+                if (Energy >= minimalEnergy) return;
+                energyDown = minEnergyTick;
+                CurrentDoing = Doing.Sleep;
             }
         }
 

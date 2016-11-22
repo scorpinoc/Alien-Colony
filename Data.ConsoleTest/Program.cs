@@ -2,15 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Data.Data.Common;
 using static System.Console;
 
 namespace Data.ConsoleTest
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             var data = new DataContainer();
             BasicTest(data);
@@ -30,29 +29,30 @@ namespace Data.ConsoleTest
             Clear();
 
             WriteLine("starting Colonists status for \"{0}\" test", testName);
-            test.Print();
+            var colonists = test as IList<Colonist> ?? test.ToList();
+            colonists.Print();
 
             WriteLine("\nmoving");
             for (int i = 0, n = new Random().Next(10, 25); i < n; ++i)
             {
                 WriteLine("\tTick {0}", i);
-                test.Work();
-                test.Print();
+                colonists.Work();
+                colonists.Print();
             }
         }
 
         private static void BasicTest(DataContainer data)
         {
-            char c = 'A';
-            for (int i = 0; i < 5; ++i)
+            var c = 'A';
+            for (var i = 0; i < 5; ++i)
                 data.Add(new Colonist((c++).ToString(), new Position(10, 10)));
         }
 
         private static void ChildTest(DataContainer data)
         {
-            char c = 'A';
+            var c = 'A';
             var a = new Colonist((c++).ToString(), new Position(10, 10));
-            var b = new Colonist((c++).ToString(), new Position(10, 10));
+            var b = new Colonist((c).ToString(), new Position(10, 10));
             var child = new Colonist($"{a.Name}&{b.Name} child", a, b);
             data.Add(a);
             data.Add(b);
