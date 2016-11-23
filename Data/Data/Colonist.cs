@@ -5,28 +5,35 @@ using Data.Interfaces;
 
 namespace Data.Data
 {
+    #region Direction
+
+    /// <summary>
+    /// Directions for <see cref="Colonist.Move(Direction)"/>
+    /// </summary>
+    public enum Direction
+    {
+        North,
+        NorthEast,
+        East,
+        SouthEast,
+        South,
+        SouthWest,
+        West,
+        NorthWest,
+        Stop
+    }
+
+    #endregion
+
     public class Colonist : INameble
     {
         #region static
+
         private static readonly Random Rand = new Random();
+
         #endregion
 
         #region constants
-
-        /// <summary>
-        /// Directions for <see cref="Move(Direction)"/>
-        /// </summary>
-        public enum Direction
-        {
-            North,
-            NorthEast,
-            East,
-            SouthEast,
-            South,
-            SouthWest,
-            West,
-            NorthWest,
-        }
 
         /// <summary>
         /// _current status - what <see cref="Colonist"/> doing
@@ -36,51 +43,57 @@ namespace Data.Data
             Sleep,
             Work,
         }
+
         #endregion
 
         #region fields
+
         private readonly IJobable _job;
         private readonly ColonistEnergy _energy;
+
         #endregion
 
         #region properties
 
         #region auto
+
         public string Name { get; }
         public Position Position { get; }
         public Doing CurrentDoing { get; private set; }
+
         #endregion
 
         #region delegate
+
         public string JobName => _job.Name;
 
         public uint Energy => _energy.Energy;
         public double EnergyPersent => _energy.EnergyPersent;
+
         #endregion
 
         #endregion
 
         #region constructors
-        public Colonist(string name)
-            : this(name, new Position())
-        { }
 
-        public Colonist(string name, Position position)
-            : this(name, position, new MoveTest() /* TODO : change to basic _job*/)
-        { }
+        public Colonist(string name) : this(name, new Position())
+        {
+        }
 
-        public Colonist(string name, Position position, IJobable job)
-            : this(name, position, job, new ColonistEnergy())
-        { }
+        public Colonist(string name, Position position) : this(name, position, new MoveTest() /* TODO : change to basic _job*/)
+        {
+        }
+
+        public Colonist(string name, Position position, IJobable job) : this(name, position, job, new ColonistEnergy())
+        {
+        }
 
         /// <summary>
         /// child generation constructor
         /// </summary>
-        public Colonist(string name, Colonist parentA, Colonist parentB)
-            : this(name: name, position: new Position(parentA.Position),
-                  job: Rand.Next(1) == 0 ? parentA._job : parentB._job,
-                  energy: new ColonistEnergy(parentA._energy, parentB._energy))
-        { }
+        public Colonist(string name, Colonist parentA, Colonist parentB) : this(name: name, position: new Position(parentA.Position), job: Rand.Next(1) == 0 ? parentA._job : parentB._job, energy: new ColonistEnergy(parentA._energy, parentB._energy))
+        {
+        }
 
         /// <summary>
         /// full constructor
@@ -88,6 +101,7 @@ namespace Data.Data
         private Colonist(string name, Position position, IJobable job, ColonistEnergy energy)
         {
             #region check
+
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException($"{nameof(Name)}");
             if (position == null)
@@ -96,6 +110,7 @@ namespace Data.Data
                 throw new ArgumentNullException($"{nameof(_job)}");
             if (energy == null)
                 throw new ArgumentNullException($"{nameof(_energy)}");
+
             #endregion
 
             Name = name;
@@ -105,6 +120,7 @@ namespace Data.Data
 
             CurrentDoing = Doing.Work;
         }
+
         #endregion
 
         #region methods
@@ -149,6 +165,8 @@ namespace Data.Data
                         Move(Direction.North);
                         direction = Direction.West;
                         continue;
+                    case Direction.Stop:
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
                 }

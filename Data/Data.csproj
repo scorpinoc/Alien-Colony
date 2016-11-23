@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Common\ColonistEnergy.cs" />
+    <Compile Include="Data\JobActions\MoveAction.cs" />
+    <Compile Include="Data\JobActions\PositionAction.cs" />
     <Compile Include="Interfaces\IJobable.cs" />
+    <Compile Include="Data\JobActions\JobAction.cs" />
     <Compile Include="Interfaces\INameble.cs" />
     <Compile Include="Data\Colonist.cs" />
     <Compile Include="DataContainer.cs" />

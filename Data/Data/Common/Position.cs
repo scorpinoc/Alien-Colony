@@ -1,7 +1,12 @@
-﻿namespace Data.Data.Common
+﻿using static System.Math;
+
+namespace Data.Data.Common
 {
     public class Position
     {
+        public static double Distance(Position a, Position b)
+            => a.Distance(b);
+
         public uint X { get; set; }
         public uint Y { get; set; }
 
@@ -18,5 +23,11 @@
             X = x;
             Y = y;
         }
+
+        public double Distance(Position other)
+            => Sqrt(
+                Pow(Max(X, other.X) - Min(X, other.X), 2)
+                +
+                Pow(Max(Y, other.Y) - Min(Y, other.Y), 2));
     }
 }

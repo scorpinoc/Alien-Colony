@@ -45,6 +45,8 @@ namespace Data.Data.Common
 
         public ColonistEnergy(int min, int max)
         {
+            if(min < 0 || max < 0)
+                throw new ArgumentOutOfRangeException($"{nameof(min)} or {nameof(max)} can't be less than 0");
             Energy = _maxEnergy = (uint)Rand.Next(min, max);
             _minEnergyTick = (uint)(_maxEnergy * 0.1);
             _energyUp = _energyDown = _minEnergyTick;

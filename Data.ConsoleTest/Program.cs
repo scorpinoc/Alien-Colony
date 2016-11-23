@@ -14,13 +14,13 @@ namespace Data.ConsoleTest
         {
             var data = new DataContainer();
             BasicTest(data);
-            Test(data.Colonist, "basic");
+            Test(data.Colonists, "basic");
 
             ReadKey(true);
 
             data = new DataContainer();
             ChildTest(data);
-            Test(data.Colonist, "child");
+            Test(data.Colonists, "child");
 
             ReadKey(true);
         }
