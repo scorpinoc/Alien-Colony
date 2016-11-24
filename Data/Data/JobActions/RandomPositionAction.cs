@@ -10,8 +10,8 @@ namespace Data.Data.JobActions
     {
         private static readonly Random Rand = new Random();
 
-        public RandomPositionAction(DataContainer ownerContainer) : base(ownerContainer, null)
-        { }
+        public RandomPositionAction(DataContainer ownerContainer) : base(ownerContainer)
+        {}
 
         public override Position Target(Colonist worker)
             => new Position((uint)Rand.Next((int)OwnerContainer.Size.X), (uint)Rand.Next((int)OwnerContainer.Size.Y));

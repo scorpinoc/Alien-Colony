@@ -1,4 +1,5 @@
 ﻿using System;
+using Data.Data.Common;
 using Data.Interfaces;
 
 namespace Data.Data.JobActions
@@ -9,22 +10,14 @@ namespace Data.Data.JobActions
     public abstract class JobAction
     {
         /// <summary>
-        /// current Alian-Colony data
-        /// </summary>
-        protected DataContainer OwnerContainer { get; }
-
-        /// <summary>
         /// get next action for sequential use
         /// <para>can be null for last in the squence element</para>
         /// </summary>
         protected JobAction NextAction { get; }
 
-        protected JobAction(DataContainer ownerContainer, JobAction nextAction)
+        protected JobAction(JobAction nextAction)
         {
             NextAction = nextAction;
-            if (ownerContainer == null)
-                throw new ArgumentNullException($"{nameof(JobAction)} must have owner colony - {nameof(DataContainer)}");
-            OwnerContainer = ownerContainer;
         }
     }
 }

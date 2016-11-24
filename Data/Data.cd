@@ -2,10 +2,24 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Data.DataContainer">
     <Position X="0.5" Y="0.75" Width="1.75" />
+    <AssociationLine Name="Size" Type="Data.Data.Common.Position" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.625" Y="1.895" />
+        <Point X="1.625" Y="2.322" />
+        <Point X="3.417" Y="2.322" Type="JumpStart" />
+        <Point X="3.583" Y="2.322" Type="JumpEnd" />
+        <Point X="3.705" Y="2.322" />
+        <Point X="3.705" Y="5.188" />
+        <Point X="7.25" Y="5.188" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="5.137" Y="3.071" />
+      </MemberNameLabel>
+    </AssociationLine>
     <AssociationLine Name="_colonists" Type="Data.Data.Colonist" FixedToPoint="true">
       <Path>
-        <Point X="2.25" Y="1.438" />
-        <Point X="4" Y="1.438" />
+        <Point X="2.25" Y="1.465" />
+        <Point X="4" Y="1.465" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="0.642" Y="0.034" Height="0.16" Width="0.999" />
@@ -13,28 +27,13 @@
     </AssociationLine>
     <AssociationLine Name="_jobs" Type="Data.Interfaces.IJobable" ManuallyRouted="true">
       <Path>
-        <Point X="1.73" Y="0.75" />
-        <Point X="1.73" Y="0.423" />
-        <Point X="7.75" Y="0.423" />
-        <Point X="7.75" Y="0.75" />
+        <Point X="0.937" Y="0.75" />
+        <Point X="0.937" Y="0.216" />
+        <Point X="7.531" Y="0.216" />
+        <Point X="7.531" Y="0.75" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="5.069" Y="0.048" Height="0.16" Width="0.624" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <AssociationLine Name="Size" Type="Data.Data.Common.Position" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="0.5" Y="1.5" />
-        <Point X="0.26" Y="1.5" />
-        <Point X="0.26" Y="2.432" />
-        <Point X="3.417" Y="2.432" Type="JumpStart" />
-        <Point X="3.583" Y="2.432" Type="JumpEnd" />
-        <Point X="3.84" Y="2.432" />
-        <Point X="3.84" Y="5.125" />
-        <Point X="7.25" Y="5.125" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="6.231" Y="2.983" Height="0.16" Width="0.731" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="Jobs" Type="Data.Interfaces.IJobable" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
@@ -86,8 +85,6 @@
     <AssociationLine Name="_job" Type="Data.Interfaces.IJobable" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="6" Y="1.438" />
-        <Point X="6.625" Y="1.438" />
-        <Point X="6.625" Y="1.438" />
         <Point X="7" Y="1.438" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
@@ -96,28 +93,28 @@
     </AssociationLine>
     <AssociationLine Name="_energy" Type="Data.Data.Common.ColonistEnergy" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="4" Y="1.625" />
-        <Point X="3.5" Y="1.625" />
+        <Point X="4" Y="1.659" />
+        <Point X="3.5" Y="1.659" />
         <Point X="3.5" Y="4.862" />
         <Point X="3" Y="4.862" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="-0.07" Y="3.046" Height="0.16" Width="0.899" />
+        <Position X="0.037" Y="2.886" Height="0.16" Width="0.899" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="Position" Type="Data.Data.Common.Position" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6" Y="2.625" />
-        <Point X="6.375" Y="2.625" />
+        <Point X="6" Y="2.698" />
+        <Point X="6.375" Y="2.698" />
         <Point X="6.375" Y="4.346" />
         <Point X="7.25" Y="4.346" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.568" Y="1.835" />
+        <Position X="0.434" Y="1.755" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>qAAAAAAAAIAAAAAgAAAEAAcAAAAAAAAEEAAAAAAAQAA=</HashCode>
+      <HashCode>qAAAAAAAAIAACAAgAAAEAAcAAAAAAAAEEAAAAAAAQAA=</HashCode>
       <FileName>Data\Colonist.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -150,24 +147,23 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Data.JobActions.JobAction">
-    <Position X="9.75" Y="0.75" Width="1.5" />
-    <AssociationLine Name="OwnerContainer" Type="Data.DataContainer" ManuallyRouted="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <AssociationLine Name="NextAction" Type="Data.Data.JobActions.JobAction" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="10.5" Y="0.75" />
-        <Point X="10.5" Y="0.101" />
-        <Point X="1.138" Y="0.101" />
-        <Point X="1.138" Y="0.75" />
+        <Point X="9.75" Y="1.312" />
+        <Point X="9.5" Y="1.312" />
+        <Point X="9.5" Y="0.875" />
+        <Point X="9.75" Y="0.875" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-10.679" Y="0.122" />
+        <Position X="0.041" Y="-0.257" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\JobAction.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="OwnerContainer" />
       <Property Name="NextAction" />
     </ShowAsAssociation>
   </Class>
@@ -175,7 +171,7 @@
     <Position X="9.75" Y="5" Width="1.5" />
     <InheritanceLine Type="Data.Data.JobActions.JobAction" FixedFromPoint="true">
       <Path>
-        <Point X="10.5" Y="1.731" />
+        <Point X="10.5" Y="1.481" />
         <Point X="10.5" Y="5" />
       </Path>
     </InheritanceLine>
@@ -185,7 +181,7 @@
         <Point X="5.5" Y="5.75" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
-        <Position X="3.258" Y="-0.289" Height="0.16" Width="0.888" />
+        <Position X="3.191" Y="-0.222" Height="0.16" Width="0.888" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="_targetPosition" Type="Data.Data.Common.Position" FixedFromPoint="true" FixedToPoint="true">
@@ -211,23 +207,41 @@
     <Position X="11.5" Y="5" Width="1.5" />
     <InheritanceLine Type="Data.Data.JobActions.JobAction" FixedFromPoint="true">
       <Path>
-        <Point X="10.5" Y="1.731" />
-        <Point X="10.5" Y="4.7" />
-        <Point X="12.25" Y="4.7" />
-        <Point X="12.25" Y="5" />
+        <Point X="10.5" Y="1.481" />
+        <Point X="10.5" Y="4.918" />
+        <Point X="11.332" Y="4.918" />
+        <Point X="11.332" Y="5.633" />
+        <Point X="11.5" Y="5.633" />
       </Path>
     </InheritanceLine>
+    <AssociationLine Name="OwnerContainer" Type="Data.DataContainer" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.688" Y="6.266" />
+        <Point X="11.688" Y="7.406" />
+        <Point X="0.259" Y="7.406" />
+        <Point X="0.259" Y="1.625" />
+        <Point X="0.5" Y="1.625" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-12.507" Y="-4.901" Height="0.16" Width="1.175" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\PositionAction.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="OwnerContainer" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.JobActions.RandomPositionAction">
-    <Position X="13.5" Y="5" Width="1.75" />
-    <InheritanceLine Type="Data.Data.JobActions.PositionAction" FixedFromPoint="true">
+    <Position X="14.75" Y="5.75" Width="1.75" />
+    <InheritanceLine Type="Data.Data.JobActions.PositionAction" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="13" Y="5.688" />
-        <Point X="13.5" Y="5.688" />
+        <Point X="14.379" Y="5.688" />
+        <Point X="14.379" Y="6.188" />
+        <Point X="14.75" Y="6.188" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -239,11 +253,11 @@
     <Position X="12.5" Y="0.75" Width="1.5" />
     <AssociationLine Name="Action" Type="Data.Data.JobActions.JobAction" FixedToPoint="true">
       <Path>
-        <Point X="12.5" Y="1.562" />
-        <Point X="11.25" Y="1.562" />
+        <Point X="12.5" Y="1.312" />
+        <Point X="11.25" Y="1.312" />
       </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.385" Y="0.082" />
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.667" Y="0.082" Height="0.16" Width="0.5" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -260,6 +274,21 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\Jobs\MovingModuleJob.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Data.JobActions.TargeredPositionAction">
+    <Position X="14.75" Y="3.75" Width="2" />
+    <InheritanceLine Type="Data.Data.JobActions.PositionAction" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13" Y="5.688" />
+        <Point X="14.402" Y="5.688" />
+        <Point X="14.402" Y="4.125" />
+        <Point X="14.75" Y="4.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\JobActions\TargeredPositionAction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Data.Interfaces.INameble">

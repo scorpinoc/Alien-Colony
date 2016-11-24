@@ -20,7 +20,7 @@ namespace Data.Data.JobActions
         //public uint Ticks { get; }
 
         // ReSharper disable once SuggestBaseTypeForParameter
-        public MoveAction(DataContainer ownerContainer/*, uint ticks*/, PositionAction nextAction) : base(ownerContainer, nextAction)
+        public MoveAction(/*uint ticks, */PositionAction nextAction) : base(nextAction)
         {
             if (nextAction == null)
                 throw new ArgumentNullException($"{nameof(NextAction)} of {nameof(MoveAction)} can't be {null}");
@@ -62,11 +62,11 @@ namespace Data.Data.JobActions
 
         private void NewDirection(Position current)
         {
-            _direction = current.X == _targetPosition.X
+            _direction = current.Y == _targetPosition.Y
                 ? Direction.Stop
-                : (current.X > _targetPosition.X ? Direction.North : Direction.South);
-            if (current.Y != _targetPosition.Y)
-                _direction = current.Y > _targetPosition.Y
+                : (current.Y > _targetPosition.Y ? Direction.North : Direction.South);
+            if (current.X != _targetPosition.X)
+                _direction = current.X > _targetPosition.X
                     ? (_direction == Direction.Stop
                         ? Direction.West
                         : (_direction == Direction.North ? Direction.NorthWest : Direction.SouthWest))

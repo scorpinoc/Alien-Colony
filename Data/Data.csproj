@@ -45,6 +45,7 @@
     <Compile Include="Data\JobActions\MoveAction.cs" />
     <Compile Include="Data\JobActions\PositionAction.cs" />
     <Compile Include="Data\JobActions\RandomPositionAction.cs" />
+    <Compile Include="Data\JobActions\TargeredPositionAction.cs" />
     <Compile Include="Interfaces\IJobable.cs" />
     <Compile Include="Data\JobActions\JobAction.cs" />
     <Compile Include="Interfaces\INameble.cs" />
@@ -57,7 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataDiagram.cd" />
+    <None Include="Data.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

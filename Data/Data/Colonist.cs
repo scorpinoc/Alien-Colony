@@ -134,8 +134,10 @@ namespace Data.Data
         /// <param name="direction"><see cref="Direction"/> of moving</param>
         public void Move(Direction direction)
         {
+            if (!CanIMove()) return;
             /* TODO : may be rework 
              and what to do if no moving (using random move) - invalid direction */
+            // todo max colony coord size using
             while (true)
             {
                 switch (direction)
@@ -148,7 +150,7 @@ namespace Data.Data
                         direction = Direction.East;
                         continue;
                     case Direction.East:
-                        if (Position.X > 0) --Position.X;
+                        if (Position.X < 1000) ++Position.X;
                         break;
                     case Direction.SouthEast:
                         Move(Direction.South);
@@ -162,7 +164,7 @@ namespace Data.Data
                         direction = Direction.West;
                         continue;
                     case Direction.West:
-                        if (Position.X < 1000) ++Position.X;
+                        if (Position.X > 0) --Position.X;
                         break;
                     case Direction.NorthWest:
                         Move(Direction.North);
@@ -224,6 +226,19 @@ namespace Data.Data
                 #endregion
 
                 break;
+            }
+        }
+
+        private bool CanIMove()
+        {
+            switch (CurrentDoing)
+            {
+                case Doing.Sleep:
+                    return false;
+                case Doing.Work:
+                    return true;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 

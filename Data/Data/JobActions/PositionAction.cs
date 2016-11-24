@@ -1,3 +1,4 @@
+using System;
 using Data.Data.Common;
 
 namespace Data.Data.JobActions
@@ -7,8 +8,14 @@ namespace Data.Data.JobActions
     /// </summary>
     public abstract class PositionAction : JobAction
     {
-        protected PositionAction(DataContainer ownerContainer, JobAction nextAction) : base(ownerContainer, nextAction)
-        { }
+        protected DataContainer OwnerContainer { get; }
+
+        protected PositionAction(DataContainer ownerContainer) : base(null)
+        {
+            if (ownerContainer == null)
+                throw new ArgumentNullException(nameof(ownerContainer));
+            OwnerContainer = ownerContainer;
+        }
 
         public abstract Position Target(Colonist worker);
     }
