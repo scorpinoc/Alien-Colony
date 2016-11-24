@@ -11,20 +11,20 @@ namespace Data.Data.JobActions
         /// <summary>
         /// current Alian-Colony data
         /// </summary>
-        private readonly DataContainer _ownerContainer;
+        protected DataContainer OwnerContainer { get; }
 
         /// <summary>
         /// get next action for sequential use
         /// <para>can be null for last in the squence element</para>
         /// </summary>
-        public JobAction NextAction { get; }
+        protected JobAction NextAction { get; }
 
         protected JobAction(DataContainer ownerContainer, JobAction nextAction)
         {
             NextAction = nextAction;
-            if (_ownerContainer == null)
+            if (ownerContainer == null)
                 throw new ArgumentNullException($"{nameof(JobAction)} must have owner colony - {nameof(DataContainer)}");
-            _ownerContainer = ownerContainer;
+            OwnerContainer = ownerContainer;
         }
     }
 }

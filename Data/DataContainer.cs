@@ -1,5 +1,7 @@
-﻿using Data.Data;
+﻿using System;
+using Data.Data;
 using System.Collections.Generic;
+using Data.Data.Common;
 using Data.Interfaces;
 
 namespace Data
@@ -12,8 +14,21 @@ namespace Data
         #endregion
 
         #region properties
+        public Position Size { get; }
         public IEnumerable<Colonist> Colonists => _colonists;
         public IEnumerable<IJobable> Jobs => _jobs;
+        #endregion
+
+        #region constructors
+        public DataContainer(Position size)
+        {
+            if (size == null)
+                throw new ArgumentNullException(nameof(Size));
+            if (size.X == 0 || size.Y == 0)
+                throw new ArgumentOutOfRangeException($"{nameof(Size)} can't be less than 0 in any of edges");
+
+            Size = size;
+        }
         #endregion
 
         #region methods

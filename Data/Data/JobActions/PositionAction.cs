@@ -3,7 +3,7 @@ using Data.Data.Common;
 namespace Data.Data.JobActions
 {
     /// <summary>
-    /// Action wich creates generates targets for <see cref="MoveAction"/>s
+    /// Action wich generates targets for <see cref="MoveAction"/>s
     /// </summary>
     public abstract class PositionAction : JobAction
     {

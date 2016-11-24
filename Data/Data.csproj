@@ -44,6 +44,7 @@
     <Compile Include="Data\Common\ColonistEnergy.cs" />
     <Compile Include="Data\JobActions\MoveAction.cs" />
     <Compile Include="Data\JobActions\PositionAction.cs" />
+    <Compile Include="Data\JobActions\RandomPositionAction.cs" />
     <Compile Include="Interfaces\IJobable.cs" />
     <Compile Include="Data\JobActions\JobAction.cs" />
     <Compile Include="Interfaces\INameble.cs" />
@@ -51,6 +52,8 @@
     <Compile Include="DataContainer.cs" />
     <Compile Include="Data\Jobs\MoveTest.cs" />
     <Compile Include="Data\Common\Position.cs" />
+    <Compile Include="Data\Jobs\ModuleJob.cs" />
+    <Compile Include="Data\Jobs\MovingModuleJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

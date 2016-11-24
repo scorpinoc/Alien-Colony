@@ -3,25 +3,59 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Data.Data.Common;
+using Data.Data.JobActions;
 using Data.Data.Jobs;
 using static System.Console;
 
 namespace Data.ConsoleTest
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main()
         {
-            var data = new DataContainer();
-            BasicTest(data);
-            Test(data.Colonists, "basic");
+            FullTestColnists(new DataContainer(new Position(1, 1)), "basic MoveTest use", BasicTest);
+            FullTestColnists(new DataContainer(new Position(1, 1)), "child", ChildTest);
+            FullTestColnists(new DataContainer(new Position(100, 100)), "Random MovingModuleJob", RandomModuleMove);
 
             ReadKey(true);
+        }
 
-            data = new DataContainer();
-            ChildTest(data);
-            Test(data.Colonists, "child");
+        #region Tests
 
+        private static void RandomModuleMove(DataContainer obj)
+        {
+            var c = 'A';
+            var job = new MovingModuleJob("Random Position Moving", new MoveAction(obj, /*5,*/ new RandomPositionAction(obj)));
+            obj.Add(job);
+            for (var i = 0; i < 5; ++i)
+                obj.Add(new Colonist((c++).ToString(), new Position(10, 10), job));
+        }
+
+        private static void ChildTest(DataContainer data)
+        {
+            var c = 'A';
+            var a = new Colonist((c++).ToString(), new Position(10, 10), new MoveTest());
+            var b = new Colonist((c).ToString(), new Position(10, 10), new MoveTest());
+            var child = new Colonist($"{a.Name}&{b.Name} child", a, b);
+            data.Add(a);
+            data.Add(b);
+            data.Add(child);
+        }
+
+        private static void BasicTest(DataContainer data)
+        {
+            var c = 'A';
+            for (var i = 0; i < 5; ++i)
+                data.Add(new Colonist((c++).ToString(), new Position(10, 10), new MoveTest()));
+        }
+
+        #endregion
+
+        private static void FullTestColnists(DataContainer data, string testName, Action<DataContainer> testInitializer)
+        {
+            if (data == null) return;
+            testInitializer?.Invoke(data);
+            Test(data.Colonists, testName);
             ReadKey(true);
         }
 
@@ -40,24 +74,6 @@ namespace Data.ConsoleTest
                 colonists.Work();
                 colonists.Print();
             }
-        }
-
-        private static void BasicTest(DataContainer data)
-        {
-            var c = 'A';
-            for (var i = 0; i < 5; ++i)
-                data.Add(new Colonist((c++).ToString(), new Position(10, 10), new MoveTest()));
-        }
-
-        private static void ChildTest(DataContainer data)
-        {
-            var c = 'A';
-            var a = new Colonist((c++).ToString(), new Position(10, 10), new MoveTest());
-            var b = new Colonist((c).ToString(), new Position(10, 10), new MoveTest());
-            var child = new Colonist($"{a.Name}&{b.Name} child", a, b);
-            data.Add(a);
-            data.Add(b);
-            data.Add(child);
         }
     }
 }

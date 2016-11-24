@@ -91,7 +91,10 @@ namespace Data.Data
         /// <summary>
         /// child generation constructor
         /// </summary>
-        public Colonist(string name, Colonist parentA, Colonist parentB) : this(name: name, position: new Position(parentA.Position), job: Rand.Next(1) == 0 ? parentA._job : parentB._job, energy: new ColonistEnergy(parentA._energy, parentB._energy))
+        public Colonist(string name, Colonist parentA, Colonist parentB)
+            : this(name: name, position: new Position(parentA.Position),
+                  job: Rand.Next(1) == 0 ? parentA._job : parentB._job,
+                  energy: new ColonistEnergy(parentA._energy, parentB._energy))
         {
         }
 
@@ -103,13 +106,13 @@ namespace Data.Data
             #region check
 
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentNullException($"{nameof(Name)}");
+                throw new ArgumentNullException(nameof(Name));
             if (position == null)
-                throw new ArgumentNullException($"{nameof(Position)}");
+                throw new ArgumentNullException(nameof(Position));
             if (job == null)
-                throw new ArgumentNullException($"{nameof(_job)}");
+                throw new ArgumentNullException(nameof(_job));
             if (energy == null)
-                throw new ArgumentNullException($"{nameof(_energy)}");
+                throw new ArgumentNullException(nameof(_energy));
 
             #endregion
 
