@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Data.Data.Colonist">
+    <Position X="2.5" Y="0.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Data.Data.Colonist.Doing">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\Colonist.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>qAAAAAAAAIAACAAgAAAEAAcAAAAAAAAEEAAAAAAAQAA=</HashCode>
+      <FileName>Data\Colonist.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_energy" />
+      <Field Name="_job" />
+      <Property Name="Position" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Data.Data.Common.ColonistEnergy">
+    <Position X="10.25" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gACAAAAAAAIAAAAAQAAEgAIAAAAAAgAAAACAAAAIQAA=</HashCode>
+      <FileName>Data\Common\ColonistEnergy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Data.Common.Position">
+    <Position X="5.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAYAA=</HashCode>
+      <FileName>Data\Common\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Data.Interfaces.IJobable">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IJobable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Data.Interfaces.INameble">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\INameble.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Data.Data.Direction">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCCABABAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAABAAQ=</HashCode>
+      <FileName>Data\Colonist.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

@@ -58,7 +58,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data.cd" />
+    <None Include="Diagrams\Colonist.cd" />
+    <None Include="Diagrams\DataContainer.cd" />
+    <None Include="Diagrams\Full.cd" />
+    <None Include="Diagrams\Job.cd" />
+    <None Include="Diagrams\JobAction.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

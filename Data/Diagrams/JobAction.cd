@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Data.Data.JobActions.JobAction">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\JobActions\JobAction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="NextAction" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Data.JobActions.MoveAction">
+    <Position X="2" Y="2.5" Width="1.5" />
+    <AssociationLine Name="_direction" Type="Data.Data.Direction" FixedFromPoint="true">
+      <Path>
+        <Point X="2.875" Y="3.93" />
+        <Point X="2.875" Y="5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="_targetPosition" Type="Data.Data.Common.Position" FixedToPoint="true">
+      <Path>
+        <Point X="2.062" Y="3.93" />
+        <Point X="2.062" Y="6" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEEAAAoAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Data\JobActions\MoveAction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_direction" />
+      <Field Name="_targetPosition" />
+      <Property Name="PositionAction" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Data.JobActions.PositionAction">
+    <Position X="5.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Data\JobActions\PositionAction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="OwnerContainer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.DataContainer" Collapsed="true">
+    <Position X="7.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAABAAAAAAwAAAAEAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataContainer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Data.JobActions.RandomPositionAction">
+    <Position X="4.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\JobActions\RandomPositionAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Data.JobActions.TargeredPositionAction">
+    <Position X="6.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\JobActions\TargeredPositionAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Data.Common.Position" Collapsed="true">
+    <Position X="1.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAYAA=</HashCode>
+      <FileName>Data\Common\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Data.Data.Direction" Collapsed="true">
+    <Position X="2.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCCABABAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAABAAQ=</HashCode>
+      <FileName>Data\Colonist.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
