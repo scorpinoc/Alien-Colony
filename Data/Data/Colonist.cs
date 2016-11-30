@@ -2,6 +2,7 @@
 using System;
 using Data.Data.Common;
 using Data.Interfaces;
+using static Data.Data.Colonist.Doing;
 
 namespace Data.Data
 {
@@ -47,6 +48,16 @@ namespace Data.Data
             Work,
         }
 
+        /// <summary>
+        /// Used by status control classes such as <see cref="ColonistEnergy"/> as return indicator
+        /// </summary>
+        public enum StatusType
+        {
+            Critical,
+            Warning,
+            InNeed,
+            Normal,
+        }
         #endregion
 
         #region fields
@@ -124,7 +135,7 @@ namespace Data.Data
             _job = job;
             _energy = energy;
 
-            CurrentDoing = Doing.Work;
+            CurrentDoing = Work;
         }
 
         #endregion
@@ -233,17 +244,7 @@ namespace Data.Data
         }
 
         private bool CanIMove()
-        {
-            switch (CurrentDoing)
-            {
-                case Doing.Sleeping:
-                    return false;
-                case Doing.Work:
-                    return true;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
+            => CurrentDoing != Sleeping;
 
         /// <summary>
         /// <see cref="Colonist"/> tick activation
@@ -258,10 +259,23 @@ namespace Data.Data
 
         private void EnergyTick()
         {
-            if (CurrentDoing == Doing.Sleeping && !_energy.Tick(true))
-                CurrentDoing = Doing.Work;
-            else if (CurrentDoing == Doing.Work && !_energy.Tick(false))
-                CurrentDoing = Doing.Sleeping;
+            switch (_energy.Tick(CurrentDoing == Sleeping))
+            {
+                case StatusType.Critical:
+                    CurrentDoing = Sleeping;
+                    break;
+                case StatusType.Warning:
+                    CurrentDoing = CriticalNeedSleep;
+                    break;
+                case StatusType.InNeed:
+                    CurrentDoing = NeedSleep;
+                    break;
+                case StatusType.Normal:
+                    CurrentDoing = Work;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         #endregion

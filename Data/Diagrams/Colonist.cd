@@ -11,14 +11,19 @@
           <NewMemberFileName>Data\Colonist.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
+      <Enum Name="Data.Data.Colonist.StatusType">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\Colonist.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>qAAAAAAAAIAACAAgAAAEAAcAAAAAAAAEEAAAAAAAQAA=</HashCode>
       <FileName>Data\Colonist.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_energy" />
       <Field Name="_job" />
+      <Field Name="_energy" />
       <Property Name="Position" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
@@ -26,14 +31,14 @@
   <Class Name="Data.Data.Common.ColonistEnergy">
     <Position X="10.25" Y="1.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>gACAAAAAAAIAAAAAQAAEgAIAAAAAAgAAAACAAAAIQAA=</HashCode>
+      <HashCode>gQAAAAAAAAIAAAAAQgAEgAIAAAAIAAAAAAAAAAAIQAA=</HashCode>
       <FileName>Data\Common\ColonistEnergy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Data.Common.Position">
     <Position X="5.5" Y="1" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAYAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAABAAAAAAAAAYAA=</HashCode>
       <FileName>Data\Common\Position.cs</FileName>
     </TypeIdentifier>
   </Class>

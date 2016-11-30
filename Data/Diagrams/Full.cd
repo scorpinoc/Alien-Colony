@@ -56,6 +56,11 @@
           <NewMemberFileName>Data\Colonist.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
+      <Enum Name="Data.Data.Colonist.StatusType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\Colonist.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>qAAAAAAAAIAACAAgAAAEAAcAAAAAAAAEEAAAAAAAQAA=</HashCode>
@@ -86,12 +91,20 @@
   <Class Name="Data.Data.Common.ColonistEnergy">
     <Position X="0.5" Y="3.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>gACAAAAAAAIAAAAAQAAEgAIAAAAAAgAAAACAAAAIQAA=</HashCode>
+      <HashCode>gQAAAAAAAAIAAAAAQgAEgAIAAAAIAAAAAAAAAAAIQAA=</HashCode>
       <FileName>Data\Common\ColonistEnergy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Data.JobActions.JobAction">
     <Position X="14.75" Y="1.5" Width="1.5" />
+    <AssociationLine Name="NextAction" Type="Data.Data.JobActions.JobAction" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="16.25" Y="2.062" />
+        <Point X="16.5" Y="2.062" />
+        <Point X="16.5" Y="1.688" />
+        <Point X="16.25" Y="1.688" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\JobAction.cs</FileName>
@@ -113,12 +126,12 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.JobActions.PositionAction">
-    <Position X="17.25" Y="3.25" Width="1.5" />
+    <Position X="16.75" Y="3.25" Width="1.5" />
     <AssociationLine Name="OwnerContainer" Type="Data.DataContainer" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="18.75" Y="3.625" />
-        <Point X="18.99" Y="3.625" />
-        <Point X="18.99" Y="0.26" />
+        <Point X="18.25" Y="3.625" />
+        <Point X="18.49" Y="3.625" />
+        <Point X="18.49" Y="0.26" />
         <Point X="5.625" Y="0.26" />
         <Point X="5.625" Y="0.5" />
       </Path>
@@ -132,11 +145,13 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.JobActions.RandomPositionAction">
-    <Position X="17.25" Y="5.25" Width="1.75" />
+    <Position X="16.75" Y="5.25" Width="1.75" />
     <InheritanceLine Type="Data.Data.JobActions.PositionAction" ManuallyRouted="true" FixedToPoint="true">
       <Path>
-        <Point X="18" Y="4.516" />
-        <Point X="18" Y="5.25" />
+        <Point X="17.5" Y="4.516" />
+        <Point X="17.5" Y="4.883" />
+        <Point X="17.5" Y="4.883" />
+        <Point X="17.5" Y="5.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -163,18 +178,32 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Data.JobActions.MultiTargetPositionAction">
-    <Position X="14.75" Y="5.25" Width="2" />
+    <Position X="14.5" Y="5.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\MultiTargetPositionAction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Data.JobActions.SingleTargetPositionAction">
-    <Position X="20" Y="5.25" Width="2" />
+    <Position X="18.75" Y="5.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACCAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\SingleTargetPositionAction.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Data.Jobs.MultiModuleJob">
+    <Position X="8.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAIAQCAAAAAAAAACAABAAAAAA=</HashCode>
+      <FileName>Data\Jobs\MultiModuleJob.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BasicJob" />
+      <Property Name="CriticalNeedsStatusJob" />
+      <Property Name="NormalNeedsStatusJob" />
+      <Property Name="OwnerContainer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Interface Name="Data.Interfaces.INameble">
     <Position X="6.75" Y="1.25" Width="1.5" />

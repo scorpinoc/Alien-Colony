@@ -18,8 +18,16 @@
   </Class>
   <Class Name="Data.Data.Colonist">
     <Position X="0.5" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
     <NestedTypes>
       <Enum Name="Data.Data.Colonist.Doing" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Data\Colonist.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Data.Data.Colonist.StatusType" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Data\Colonist.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -34,7 +42,7 @@
   <Class Name="Data.Data.Common.Position">
     <Position X="7.75" Y="2" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAYAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAABAAAAAAAAAYAA=</HashCode>
       <FileName>Data\Common\Position.cs</FileName>
     </TypeIdentifier>
   </Class>
