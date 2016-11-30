@@ -13,21 +13,23 @@ namespace Data.ConsoleTest
     {
         private static void Main()
         {
-            while (true)
-            {
-                var tests = new Action[]
+            var tests = new Action[]
                 {
                     BasicTest,
                     ChildTest,
                     RandomModuleMoveTest,
                     SignleTargetModuleMoveTest,
                     MultiTargetModuleMoveTest,
+                    MultiModuleJobTest,
                 };
+            while (true)
+            {
 
-                WriteLine($"enter test number 0 to {tests.Length - 1} (anithing else to exit)");
+                Clear();
+                WriteLine($"enter test number 1 to {tests.Length} (anithing else to exit)");
                 int testIndex;
-                if (!int.TryParse(ReadLine(), out testIndex)) return;
-                if (testIndex > 0 && testIndex < tests.Length)
+                int.TryParse(ReadLine(), out testIndex);
+                if (testIndex > 0 && --testIndex < tests.Length)
                     tests[testIndex]();
                 else
                 {
@@ -37,8 +39,21 @@ namespace Data.ConsoleTest
             }
         }
 
-
         #region Tests
+
+        private static void MultiModuleJobTest()
+        {
+
+            var obj = new DataContainer(new Position(100, 100));
+            var c = 'A';
+            var job = new MultiModuleJob("test", obj, new MovingModuleJob("test",
+                new MoveAction(new SingleTargetPositionAction(obj, data => new Position(50, 50)))));
+            obj.Add(job);
+            var rand = new Random();
+            for (var i = 0; i < 4; ++i)
+                obj.Add(new Colonist((c++).ToString(), new Position((uint)rand.Next(20, 80), (uint)rand.Next(20, 80)), job));
+            Test(obj.Colonists, $"{nameof(MultiModuleJob)} -> {nameof(MovingModuleJob)} -> {nameof(SingleTargetPositionAction)} to {{50;50}}");
+        }
 
         private static void MultiTargetModuleMoveTest()
         {

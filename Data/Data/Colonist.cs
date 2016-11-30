@@ -40,7 +40,10 @@ namespace Data.Data
         /// </summary>
         public enum Doing
         {
-            Sleep,
+            Sleeping,
+            CriticalNeedSleep,
+            NeedSleep,
+
             Work,
         }
 
@@ -233,7 +236,7 @@ namespace Data.Data
         {
             switch (CurrentDoing)
             {
-                case Doing.Sleep:
+                case Doing.Sleeping:
                     return false;
                 case Doing.Work:
                     return true;
@@ -255,10 +258,10 @@ namespace Data.Data
 
         private void EnergyTick()
         {
-            if (CurrentDoing == Doing.Sleep && !_energy.Tick(true))
+            if (CurrentDoing == Doing.Sleeping && !_energy.Tick(true))
                 CurrentDoing = Doing.Work;
             else if (CurrentDoing == Doing.Work && !_energy.Tick(false))
-                CurrentDoing = Doing.Sleep;
+                CurrentDoing = Doing.Sleeping;
         }
 
         #endregion

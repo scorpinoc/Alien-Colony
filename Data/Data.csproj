@@ -47,6 +47,7 @@
     <Compile Include="Data\JobActions\RandomPositionAction.cs" />
     <Compile Include="Data\JobActions\MultiTargetPositionAction.cs" />
     <Compile Include="Data\JobActions\SingleTargetPositionAction.cs" />
+    <Compile Include="Data\Jobs\MultiModuleJob.cs" />
     <Compile Include="Interfaces\IJobable.cs" />
     <Compile Include="Data\JobActions\JobAction.cs" />
     <Compile Include="Interfaces\INameble.cs" />
