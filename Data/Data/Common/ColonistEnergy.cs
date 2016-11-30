@@ -13,7 +13,7 @@ namespace Data.Data.Common
         private const int MinimalEnergy = 10;
         private const int CriticalEnergy = MinimalEnergy * 2;
         private const int InNeedEnergy = CriticalEnergy + MinimalEnergy;
-        private const int MaximumEnergy = 100;
+        private const int MaximumEnergy = 200;
         #endregion
 
         #region fields

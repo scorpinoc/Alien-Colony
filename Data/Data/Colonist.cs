@@ -244,7 +244,7 @@ namespace Data.Data
         }
 
         private bool CanIMove()
-            => CurrentDoing != Sleeping;
+            => CurrentDoing == Work;
 
         /// <summary>
         /// <see cref="Colonist"/> tick activation
@@ -259,7 +259,7 @@ namespace Data.Data
 
         private void EnergyTick()
         {
-            switch (_energy.Tick(CurrentDoing == Sleeping))
+            switch (_energy.Tick(CurrentDoing != Work)) // todo rework on variant of balanced sleep situation
             {
                 case StatusType.Critical:
                     CurrentDoing = Sleeping;
@@ -277,7 +277,6 @@ namespace Data.Data
                     throw new ArgumentOutOfRangeException();
             }
         }
-
         #endregion
     }
 }

@@ -35,9 +35,10 @@
   <Class Name="Data.DataContainer" Collapsed="true">
     <Position X="9.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAAAwAAAAEAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAABAAAAAAwAAAAEAAAAQAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DataContainer.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Data.JobActions.RandomPositionAction">
     <Position X="4.75" Y="4.5" Width="1.75" />

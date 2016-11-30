@@ -3,7 +3,7 @@
   <Class Name="Data.DataContainer">
     <Position X="3.75" Y="1.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAAAwAAAAEAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAABAAAAAAwAAAAEAAAAQAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DataContainer.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -15,6 +15,7 @@
       <Property Name="Colonists" />
       <Property Name="Jobs" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Data.Colonist">
     <Position X="0.5" Y="0.5" Width="2" />

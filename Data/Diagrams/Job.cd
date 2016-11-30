@@ -38,6 +38,11 @@
   </Class>
   <Class Name="Data.Data.Jobs.MultiModuleJob">
     <Position X="0.5" Y="2" Width="1.5" />
+    <AssociationLine Name="OwnerContainer" Type="Data.DataContainer">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.039" Y="0.079" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAAAAAAAAIAQCAAAAAAAAACAABAAAAAA=</HashCode>
       <FileName>Data\Jobs\MultiModuleJob.cs</FileName>
@@ -53,9 +58,10 @@
   <Class Name="Data.DataContainer" Collapsed="true">
     <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAAAwAAAAEAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAABAAAAAAwAAAAEAAAAQAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DataContainer.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.242" />
   </Class>
   <Interface Name="Data.Interfaces.IJobable">
     <Position X="6.5" Y="3.75" Width="1.5" />

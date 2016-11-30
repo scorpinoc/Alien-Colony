@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4A4CF8A2-1A9A-4F50-A45A-22E5C30982E1}</ProjectGuid>
+    <ProjectGuid>{84D41C47-0E4E-4087-9826-B24ADF94F38F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Data</RootNamespace>
-    <AssemblyName>Data</AssemblyName>
+    <RootNamespace>Controller</RootNamespace>
+    <AssemblyName>Controller</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,7 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,31 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Common\ColonistEnergy.cs" />
-    <Compile Include="Data\JobActions\MoveAction.cs" />
-    <Compile Include="Data\JobActions\PositionAction.cs" />
-    <Compile Include="Data\JobActions\RandomPositionAction.cs" />
-    <Compile Include="Data\JobActions\MultiTargetPositionAction.cs" />
-    <Compile Include="Data\JobActions\SingleTargetPositionAction.cs" />
-    <Compile Include="Data\Jobs\MultiModuleJob.cs" />
-    <Compile Include="Interfaces\IJobable.cs" />
-    <Compile Include="Data\JobActions\JobAction.cs" />
-    <Compile Include="Interfaces\INameble.cs" />
-    <Compile Include="Data\Colonist.cs" />
-    <Compile Include="DataContainer.cs" />
-    <Compile Include="Data\Jobs\MoveTest.cs" />
-    <Compile Include="Data\Common\Position.cs" />
-    <Compile Include="Data\Jobs\ModuleJob.cs" />
-    <Compile Include="Data\Jobs\MovingModuleJob.cs" />
-    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ColonyController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Diagrams\Colonist.cd" />
-    <None Include="Diagrams\DataContainer.cd" />
-    <None Include="Diagrams\Full.cd" />
-    <None Include="Diagrams\Job.cd" />
-    <None Include="Diagrams\JobAction.cd" />
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{4A4CF8A2-1A9A-4F50-A45A-22E5C30982E1}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

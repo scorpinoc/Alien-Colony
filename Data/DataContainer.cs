@@ -6,7 +6,7 @@ using Data.Interfaces;
 
 namespace Data
 {
-    public class DataContainer
+    public class DataContainer : INameble
     {
         #region fields
         private readonly List<Colonist> _colonists = new List<Colonist>();
@@ -14,6 +14,7 @@ namespace Data
         #endregion
 
         #region properties
+        public string Name { get; }
         public Position Size { get; }
         public IEnumerable<Colonist> Colonists => _colonists;
         public IEnumerable<IJobable> Jobs => _jobs;
@@ -21,12 +22,19 @@ namespace Data
 
         #region constructors
         public DataContainer(Position size)
+            : this("Unnamed", size)
+        { }
+
+        public DataContainer(string colonyName, Position size)
         {
             if (size == null)
                 throw new ArgumentNullException(nameof(Size));
             if (size.X == 0 || size.Y == 0)
                 throw new ArgumentOutOfRangeException($"{nameof(Size)} can't be less than 0 in any of edges");
+            if (string.IsNullOrWhiteSpace(colonyName))
+                throw new ArgumentNullException(nameof(colonyName));
 
+            Name = colonyName;
             Size = size;
         }
         #endregion
@@ -46,5 +54,6 @@ namespace Data
         public void Add(IJobable obj) => _jobs.Add(obj);
 
         #endregion
+
     }
 }

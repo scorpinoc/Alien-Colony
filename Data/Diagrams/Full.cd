@@ -4,35 +4,35 @@
     <Position X="4.25" Y="0.5" Width="1.75" />
     <AssociationLine Name="_colonists" Type="Data.Data.Colonist" FixedToPoint="true">
       <Path>
-        <Point X="4.5" Y="1.645" />
+        <Point X="4.5" Y="2.027" />
         <Point X="4.5" Y="3" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="_jobs" Type="Data.Interfaces.IJobable" ManuallyRouted="true">
       <Path>
-        <Point X="6" Y="1.073" />
-        <Point X="6.216" Y="1.073" />
+        <Point X="6" Y="1.264" />
+        <Point X="6.216" Y="1.264" />
         <Point X="6.216" Y="3.551" />
         <Point X="6.75" Y="3.551" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Size" Type="Data.Data.Common.Position" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6" Y="0.688" />
-        <Point X="9.625" Y="0.688" />
+        <Point X="6" Y="0.751" />
+        <Point X="9.625" Y="0.751" />
         <Point X="9.625" Y="4" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Jobs" Type="Data.Interfaces.IJobable" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6" Y="0.938" />
-        <Point X="6.375" Y="0.938" />
+        <Point X="6" Y="1.084" />
+        <Point X="6.375" Y="1.084" />
         <Point X="6.375" Y="3.244" />
         <Point X="6.75" Y="3.244" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAAAwAAAAEAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAABAAAAAAwAAAAEAAAAQAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DataContainer.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -44,6 +44,7 @@
       <Property Name="Colonists" />
       <Property Name="Jobs" />
     </ShowAsCollectionAssociation>
+    <Lollipop Orientation="Left" Position="0.255" />
   </Class>
   <Class Name="Data.Data.Colonist">
     <Position X="3.75" Y="3" Width="2" />
@@ -135,6 +136,9 @@
         <Point X="5.625" Y="0.26" />
         <Point X="5.625" Y="0.5" />
       </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.471" Y="0.032" />
+      </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAACAAAAAAAAA=</HashCode>
