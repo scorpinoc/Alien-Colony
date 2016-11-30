@@ -29,5 +29,7 @@ namespace Data.Data.Common
                 Pow(Max(X, other.X) - Min(X, other.X), 2)
                 +
                 Pow(Max(Y, other.Y) - Min(Y, other.Y), 2));
+
+        public override string ToString() => $"{{{X}, {Y}}}";
     }
 }

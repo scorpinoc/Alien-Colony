@@ -14,7 +14,7 @@ namespace Data.ConsoleTest
         private static void Main()
         {
             int testIndex;
-            WriteLine("enter test number 0 to 3");
+            WriteLine("enter test number 0 to 4");
             if (!int.TryParse(ReadLine(), out testIndex))
                 return;
             switch (testIndex)
@@ -29,7 +29,11 @@ namespace Data.ConsoleTest
                     FullTestColnists(new DataContainer(new Position(100, 100)), "Random MovingModuleJob", RandomModuleMove);
                     break;
                 case 3:
-                    FullTestColnists(new DataContainer(new Position(100, 100)), "Targered MovingModuleJob - to {{50;50}}", TargeredModuleMove);
+                    FullTestColnists(new DataContainer(new Position(100, 100)), "SingleTargeted MovingModuleJob - to {{50;50}}", SignleTargetModuleMoveTestInitializer);
+                    break;
+                case 4:
+                    FullTestColnists(new DataContainer(new Position(100, 100)),
+                        "MultiTargeted MovingModuleJob - to {{25;25}, {25;75}, {75;75}, {75;25}}", MultiTargetModuleMoveTestInitializer);
                     break;
                 default:
                     WriteLine("No such test number");
@@ -39,17 +43,29 @@ namespace Data.ConsoleTest
             ReadKey(true);
         }
 
-        private static void TargeredModuleMove(DataContainer obj)
+
+        #region Tests
+
+        private static void MultiTargetModuleMoveTestInitializer(DataContainer obj)
         {
             var c = 'A';
-            var job = new MovingModuleJob("Targered Position Moving", new MoveAction(new TargeredPositionAction(obj, data => new[] { new Position(50, 50) })));
+            var job = new MovingModuleJob("Targered Position Moving", new MoveAction(new MultiTargetPositionAction(obj,
+                data => new[] { new Position(25, 25), new Position(25, 75), new Position(75, 75), new Position(75, 25), })));
             obj.Add(job);
             var rand = new Random();
             for (var i = 0; i < 3; ++i)
-                obj.Add(new Colonist((c++).ToString(), new Position((uint) rand.Next(15, 85), (uint) rand.Next(25, 75)), job));
+                obj.Add(new Colonist((c++).ToString(), new Position((uint)rand.Next(25, 75), (uint)rand.Next(25, 75)), job));
         }
 
-        #region Tests
+        private static void SignleTargetModuleMoveTestInitializer(DataContainer obj)
+        {
+            var c = 'A';
+            var job = new MovingModuleJob("Targered Position Moving", new MoveAction(new SingleTargetPositionAction(obj, data => new Position(50, 50))));
+            obj.Add(job);
+            var rand = new Random();
+            for (var i = 0; i < 3; ++i)
+                obj.Add(new Colonist((c++).ToString(), new Position((uint)rand.Next(15, 85), (uint)rand.Next(25, 75)), job));
+        }
 
         private static void RandomModuleMove(DataContainer obj)
         {
