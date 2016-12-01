@@ -1,38 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Data.DataContainer">
-    <Position X="4.25" Y="0.5" Width="1.75" />
-    <AssociationLine Name="_colonists" Type="Data.Data.Colonist" FixedToPoint="true">
+    <Position X="8.75" Y="11.5" Width="2.25" />
+    <AssociationLine Name="_colonists" Type="Data.Data.Colonist" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="4.5" Y="2.027" />
-        <Point X="4.5" Y="3" />
+        <Point X="8.75" Y="11.688" />
+        <Point X="8.583" Y="11.688" Type="JumpStart" />
+        <Point X="8.417" Y="11.688" Type="JumpEnd" />
+        <Point X="7.005" Y="11.688" Type="JumpStart" />
+        <Point X="6.839" Y="11.688" Type="JumpEnd" />
+        <Point X="6.677" Y="11.688" Type="JumpStart" />
+        <Point X="6.51" Y="11.688" Type="JumpEnd" />
+        <Point X="6.349" Y="11.688" Type="JumpStart" />
+        <Point X="6.182" Y="11.688" Type="JumpEnd" />
+        <Point X="3.875" Y="11.688" />
+        <Point X="3.875" Y="10.25" />
+        <Point X="3.5" Y="10.25" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="_jobs" Type="Data.Interfaces.IJobable" ManuallyRouted="true">
+    <AssociationLine Name="_jobs" Type="Data.Interfaces.IJobable" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6" Y="1.264" />
-        <Point X="6.216" Y="1.264" />
-        <Point X="6.216" Y="3.551" />
-        <Point X="6.75" Y="3.551" />
+        <Point X="9.625" Y="11.5" />
+        <Point X="9.625" Y="9.938" />
+        <Point X="8.75" Y="9.938" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="Size" Type="Data.Data.Common.Position" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Colonists" Type="Data.Data.Colonist" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="6" Y="0.751" />
-        <Point X="9.625" Y="0.751" />
-        <Point X="9.625" Y="4" />
+        <Point X="8.75" Y="12.062" />
+        <Point X="8.583" Y="12.062" Type="JumpStart" />
+        <Point X="8.417" Y="12.062" Type="JumpEnd" />
+        <Point X="7.005" Y="12.062" Type="JumpStart" />
+        <Point X="6.839" Y="12.062" Type="JumpEnd" />
+        <Point X="6.677" Y="12.062" Type="JumpStart" />
+        <Point X="6.51" Y="12.062" Type="JumpEnd" />
+        <Point X="6.349" Y="12.062" Type="JumpStart" />
+        <Point X="6.182" Y="12.062" Type="JumpEnd" />
+        <Point X="3.25" Y="12.062" />
+        <Point X="3.25" Y="11.25" />
+        <Point X="3" Y="11.25" />
+        <Point X="3" Y="10.411" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="Jobs" Type="Data.Interfaces.IJobable" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="_buildings" Type="Data.Data.Building" FixedToPoint="true">
       <Path>
-        <Point X="6" Y="1.084" />
-        <Point X="6.375" Y="1.084" />
-        <Point X="6.375" Y="3.244" />
-        <Point X="6.75" Y="3.244" />
+        <Point X="8.938" Y="13.027" />
+        <Point X="8.938" Y="13.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Buildings" Type="Data.Data.Building" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="13.027" />
+        <Point X="10" Y="13.75" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PhysicalObjects" Type="Data.Interfaces.IPhysicalObject" FixedToPoint="true">
+      <Path>
+        <Point X="10.875" Y="11.5" />
+        <Point X="10.875" Y="10.158" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAAAwAAAAEAAAAQAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAABAAAAAAwAAAAEAAAAQAQAAEAAAAAAAQAAAAAAA=</HashCode>
       <FileName>DataContainer.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -41,13 +70,16 @@
     <ShowAsCollectionAssociation>
       <Field Name="_colonists" />
       <Field Name="_jobs" />
+      <Field Name="_buildings" />
       <Property Name="Colonists" />
       <Property Name="Jobs" />
+      <Property Name="Buildings" />
+      <Property Name="PhysicalObjects" />
     </ShowAsCollectionAssociation>
-    <Lollipop Orientation="Left" Position="0.255" />
+    <Lollipop Orientation="Right" Position="0.995" />
   </Class>
   <Class Name="Data.Data.Colonist">
-    <Position X="3.75" Y="3" Width="2" />
+    <Position X="1.5" Y="5.5" Width="2" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -63,49 +95,72 @@
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
+    <AssociationLine Name="Position" Type="Data.Data.Common.Position" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.5" Y="6.74" />
+        <Point X="3.792" Y="6.74" Type="JumpStart" />
+        <Point X="3.958" Y="6.74" Type="JumpEnd" />
+        <Point X="9.417" Y="6.74" Type="JumpStart" />
+        <Point X="9.583" Y="6.74" Type="JumpEnd" />
+        <Point X="12.75" Y="6.74" />
+        <Point X="12.75" Y="10" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ObjectType" Type="Data.Interfaces.ObjectType" FixedToPoint="true">
+      <Path>
+        <Point X="1.938" Y="10.411" />
+        <Point X="1.938" Y="11.5" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>qAAAAAAAAIAACAAgAAAEAAcAAAAAAAAEEAAAAAAAQAA=</HashCode>
+      <HashCode>qAAAAAAAAIAACAAgAAAEAAcAAAAAAAAEEIAAAAAAQAA=</HashCode>
       <FileName>Data\Colonist.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="_job" />
       <Field Name="_energy" />
+      <Field Name="Rand" />
       <Property Name="Position" />
+      <Property Name="ObjectType" />
     </ShowAsAssociation>
-    <Lollipop Orientation="Left" Position="0.221" />
+    <Lollipop Position="1.305" />
   </Class>
   <Class Name="Data.Data.Common.Position">
-    <Position X="8.75" Y="4" Width="2" />
+    <Position X="12.5" Y="10" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAABAAAAAAAAAYAA=</HashCode>
       <FileName>Data\Common\Position.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Data.Jobs.MoveTest">
-    <Position X="10.75" Y="0.75" Width="1.5" />
+    <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\Jobs\MoveTest.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Rand" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Data.Common.ColonistEnergy">
-    <Position X="0.5" Y="3.5" Width="2.5" />
+    <Position X="0.5" Y="1.25" Width="2.5" />
+    <AssociationLine Name="Rand" Type="System.Random" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="3.125" />
+        <Point X="4.5" Y="3.125" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>gQAAAAAAAAIAAAAAQgAEgAIAAAAIAAAAAAAAAAAIQAA=</HashCode>
       <FileName>Data\Common\ColonistEnergy.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Rand" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.JobActions.JobAction">
-    <Position X="14.75" Y="1.5" Width="1.5" />
-    <AssociationLine Name="NextAction" Type="Data.Data.JobActions.JobAction" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="16.25" Y="2.062" />
-        <Point X="16.5" Y="2.062" />
-        <Point X="16.5" Y="1.688" />
-        <Point X="16.25" Y="1.688" />
-      </Path>
-    </AssociationLine>
+    <Position X="14" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\JobAction.cs</FileName>
@@ -115,7 +170,21 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.JobActions.MoveAction">
-    <Position X="12" Y="3.25" Width="1.5" />
+    <Position X="13.25" Y="7.5" Width="1.5" />
+    <InheritanceLine Type="Data.Data.JobActions.JobAction" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.562" Y="3.481" />
+        <Point X="14.562" Y="4.684" />
+        <Point X="14.562" Y="4.684" />
+        <Point X="14.562" Y="7.5" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="_targetPosition" Type="Data.Data.Common.Position" FixedToPoint="true">
+      <Path>
+        <Point X="14.125" Y="8.93" />
+        <Point X="14.125" Y="10" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAEEAAAoAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>Data\JobActions\MoveAction.cs</FileName>
@@ -127,17 +196,19 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.JobActions.PositionAction">
-    <Position X="16.75" Y="3.25" Width="1.5" />
+    <Position X="7.25" Y="2.5" Width="1.5" />
     <AssociationLine Name="OwnerContainer" Type="Data.DataContainer" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="18.25" Y="3.625" />
-        <Point X="18.49" Y="3.625" />
-        <Point X="18.49" Y="0.26" />
-        <Point X="5.625" Y="0.26" />
-        <Point X="5.625" Y="0.5" />
+        <Point X="8.75" Y="3.688" />
+        <Point X="9.5" Y="3.688" />
+        <Point X="9.5" Y="7.25" />
+        <Point X="10.25" Y="7.25" />
+        <Point X="10.25" Y="9" />
+        <Point X="9.938" Y="9" />
+        <Point X="9.938" Y="11.5" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-0.471" Y="0.032" />
+        <Position X="0.044" Y="0.042" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
@@ -149,22 +220,31 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.JobActions.RandomPositionAction">
-    <Position X="16.75" Y="5.25" Width="1.75" />
-    <InheritanceLine Type="Data.Data.JobActions.PositionAction" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="17.5" Y="4.516" />
-        <Point X="17.5" Y="4.883" />
-        <Point X="17.5" Y="4.883" />
-        <Point X="17.5" Y="5.25" />
-      </Path>
-    </InheritanceLine>
+    <Position X="4.75" Y="4.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\RandomPositionAction.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Rand" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.Jobs.ModuleJob">
-    <Position X="12" Y="7" Width="1.5" />
+    <Position X="4.25" Y="7.5" Width="1.5" />
+    <AssociationLine Name="Action" Type="Data.Data.JobActions.JobAction" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.5" Y="7.5" />
+        <Point X="5.5" Y="7.125" />
+        <Point X="9.417" Y="7.125" Type="JumpStart" />
+        <Point X="9.583" Y="7.125" Type="JumpEnd" />
+        <Point X="12.667" Y="7.125" Type="JumpStart" />
+        <Point X="12.833" Y="7.125" Type="JumpEnd" />
+        <Point X="13.51" Y="7.125" Type="JumpStart" />
+        <Point X="13.677" Y="7.125" Type="JumpEnd" />
+        <Point X="14.188" Y="7.125" />
+        <Point X="14.188" Y="3.481" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Data\Jobs\ModuleJob.cs</FileName>
@@ -175,59 +255,128 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Data.Jobs.MovingModuleJob">
-    <Position X="14.5" Y="7.25" Width="1.5" />
+    <Position X="4.25" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\Jobs\MovingModuleJob.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Data.JobActions.MultiTargetPositionAction">
-    <Position X="14.5" Y="5.25" Width="2" />
+    <Position X="7.25" Y="4.5" Width="2" />
+    <InheritanceLine Type="Data.Data.JobActions.PositionAction" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="3.766" />
+        <Point X="8" Y="4.376" />
+        <Point X="8" Y="4.376" />
+        <Point X="8" Y="4.5" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\MultiTargetPositionAction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Data.JobActions.SingleTargetPositionAction">
-    <Position X="18.75" Y="5.25" Width="2" />
+    <Position X="9.75" Y="4.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACCAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\SingleTargetPositionAction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Data.Data.Jobs.MultiModuleJob">
-    <Position X="8.75" Y="7" Width="1.5" />
+    <Position X="6" Y="12.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAAAAAAIAQCAAAAAAAAACAABAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAUCAAAAAAAAACAABAAAAAA=</HashCode>
       <FileName>Data\Jobs\MultiModuleJob.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="BasicJob" />
-      <Property Name="CriticalNeedsStatusJob" />
-      <Property Name="NormalNeedsStatusJob" />
       <Property Name="OwnerContainer" />
+      <Property Name="CriticalNeedsStatusJob" />
+      <Property Name="BasicJob" />
+      <Property Name="WarningNeedsStatusJob" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="Data.Data.Building">
+    <Position X="8.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAQAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Data\Building.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ObjectType" />
+      <Property Name="Position" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Left" Position="0.11" />
+  </Class>
+  <Class Name="System.Random" Collapsed="true">
+    <Position X="4.5" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
   <Interface Name="Data.Interfaces.INameble">
-    <Position X="6.75" Y="1.25" Width="1.5" />
+    <Position X="8.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\INameble.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Data.Interfaces.IJobable">
-    <Position X="6.75" Y="3" Width="1.5" />
+    <Position X="7.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IJobable.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="Data.Interfaces.IPhysicalObject">
+    <Position X="10.25" Y="9.25" Width="1.5" />
+    <AssociationLine Name="ObjectType" Type="Data.Interfaces.ObjectType" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="10" />
+        <Point X="9.875" Y="10" />
+        <Point X="9.875" Y="10.808" />
+        <Point X="9.708" Y="10.808" Type="JumpStart" />
+        <Point X="9.542" Y="10.808" Type="JumpEnd" />
+        <Point X="9.083" Y="10.808" Type="JumpStart" />
+        <Point X="8.917" Y="10.808" Type="JumpEnd" />
+        <Point X="8.5" Y="10.808" />
+        <Point X="8.5" Y="12.203" />
+        <Point X="7.005" Y="12.203" Type="JumpStart" />
+        <Point X="6.839" Y="12.203" Type="JumpEnd" />
+        <Point X="6.677" Y="12.203" Type="JumpStart" />
+        <Point X="6.51" Y="12.203" Type="JumpEnd" />
+        <Point X="6.349" Y="12.203" Type="JumpStart" />
+        <Point X="6.182" Y="12.203" Type="JumpEnd" />
+        <Point X="3" Y="12.203" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Position" Type="Data.Data.Common.Position" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.438" Y="10.158" />
+        <Point X="11.438" Y="10.375" />
+        <Point X="12.5" Y="10.375" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPhysicalObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ObjectType" />
+      <Property Name="Position" />
+    </ShowAsAssociation>
+  </Interface>
   <Enum Name="Data.Data.Direction">
-    <Position X="6" Y="5" Width="1.5" />
+    <Position X="15.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACCCABABAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAABAAQ=</HashCode>
       <FileName>Data\Colonist.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Interfaces.ObjectType">
+    <Position X="1.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPhysicalObject.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Tahoma" Size="8.25" />

@@ -1,5 +1,5 @@
 using System;
-using Data.Data.Common;
+using System.Linq;
 using Data.Data.JobActions;
 using Data.Interfaces;
 
@@ -25,8 +25,8 @@ namespace Data.Data.Jobs
         #region auto
         public string Name { get; }
         private DataContainer OwnerContainer { get; }
-        private ModuleJob CriticalNeedsStatusJob { get; } 
-        private ModuleJob NormalNeedsStatusJob { get; } 
+        private ModuleJob CriticalNeedsStatusJob { get; }
+        private ModuleJob WarningNeedsStatusJob { get; }
         private ModuleJob BasicJob { get; }
         #endregion
 
@@ -46,9 +46,12 @@ namespace Data.Data.Jobs
             Name = name;
             OwnerContainer = ownerContainer;
             // todo CriticalNeedsStatusJob
-            CriticalNeedsStatusJob = new MovingModuleJob("Critical", new MoveAction(new SingleTargetPositionAction(OwnerContainer, container => new Position())));
-            // todo NormalNeedsStatusJob
-            NormalNeedsStatusJob = new MovingModuleJob("Normal", new MoveAction(new SingleTargetPositionAction(OwnerContainer, container => container.Size)));
+            CriticalNeedsStatusJob = new MovingModuleJob("Critical", new MoveAction(
+                new MultiTargetPositionAction(OwnerContainer, container => container.Buildings.Select(building => building.Position))));
+            // todo WarningNeedsStatusJob
+            WarningNeedsStatusJob = new MovingModuleJob("Warning", new MoveAction(
+                new MultiTargetPositionAction(OwnerContainer, container => container.Buildings
+                    .Where(building => building.Name == Name).Select(building => building.Position))));
 
             BasicJob = basicJob;
         }
@@ -66,8 +69,8 @@ namespace Data.Data.Jobs
                 case Colonist.Doing.CriticalNeedSleep:
                     CriticalNeedsStatusJob.Work(worker);
                     break;
-                case Colonist.Doing.NeedSleep:
-                    NormalNeedsStatusJob.Work(worker);
+                case Colonist.Doing.WarningNeedSleep:
+                    WarningNeedsStatusJob.Work(worker);
                     break;
                 case Colonist.Doing.Work:
                     BasicJob.Work(worker);

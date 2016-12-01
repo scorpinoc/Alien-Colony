@@ -63,16 +63,16 @@ namespace Data.Data.Common
         /// Changing <see cref="Colonist"/> energy consist to <paramref name="sleeping"/> status.
         /// </summary>
         /// <param name="sleeping">true if currently colonist sleeping</param>
-        /// <returns><see cref="Normal"/> if all ok, <see cref="InNeed"/> on low energy and
-        /// <see cref="Critical"/> if sleeping already</returns>
+        /// <returns><see cref="Normal"/> if all ok, <see cref="Colonist.StatusType.Warning"/> on low energy and
+        /// <see cref="Colonist.StatusType.Out"/> if sleeping already</returns>
         public Colonist.StatusType Tick(bool sleeping)
         {
             if (sleeping)
             {
                 Energy += (uint)Rand.Next((int)++_energyChanger);
-                if (Energy < CriticalEnergy) return Critical;
-                if (Energy < InNeedEnergy) return Warning;
-                if (Energy < _maxEnergy) return InNeed;
+                if (Energy < CriticalEnergy) return Out;
+                if (Energy < InNeedEnergy) return Critical;
+                if (Energy < _maxEnergy) return Warning;
                 Energy = _maxEnergy;
                 _energyChanger = _minEnergyTick;
                 return Normal;
@@ -81,10 +81,10 @@ namespace Data.Data.Common
             try { checked { Energy -= (uint)Rand.Next((int)++_energyChanger); } }
             catch { Energy = 0; }
             if (Energy > InNeedEnergy) return Normal;
-            if (Energy > CriticalEnergy) return InNeed;
-            if (Energy > MinimalEnergy) return Warning;
+            if (Energy > CriticalEnergy) return Warning;
+            if (Energy > MinimalEnergy) return Critical;
             _energyChanger = _minEnergyTick;
-            return Critical;
+            return Out;
         }
         #endregion
     }

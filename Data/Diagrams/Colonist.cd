@@ -18,22 +18,27 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>qAAAAAAAAIAACAAgAAAEAAcAAAAAAAAEEAAAAAAAQAA=</HashCode>
+      <HashCode>qAAAAAAAAIAACAAgAAAEAAcAAAAAAAAEEIAAAAAAQAA=</HashCode>
       <FileName>Data\Colonist.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="_job" />
       <Field Name="_energy" />
+      <Field Name="Rand" />
       <Property Name="Position" />
+      <Property Name="ObjectType" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Data.Data.Common.ColonistEnergy">
-    <Position X="10.25" Y="1.5" Width="2.25" />
+    <Position X="10.25" Y="2.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>gQAAAAAAAAIAAAAAQgAEgAIAAAAIAAAAAAAAAAAIQAA=</HashCode>
       <FileName>Data\Common\ColonistEnergy.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Rand" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.Common.Position">
     <Position X="5.5" Y="1" Width="2" />
@@ -41,6 +46,10 @@
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAABAAAAAAAAAYAA=</HashCode>
       <FileName>Data\Common\Position.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="System.Random" Collapsed="true">
+    <Position X="7.25" Y="5" Width="1.25" />
+    <TypeIdentifier />
   </Class>
   <Interface Name="Data.Interfaces.IJobable">
     <Position X="8" Y="2.25" Width="1.5" />
@@ -56,11 +65,29 @@
       <FileName>Interfaces\INameble.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="Data.Interfaces.IPhysicalObject">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPhysicalObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ObjectType" />
+      <Property Name="Position" />
+    </ShowAsAssociation>
+  </Interface>
   <Enum Name="Data.Data.Direction">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACCCABABAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAABAAQ=</HashCode>
       <FileName>Data\Colonist.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Interfaces.ObjectType">
+    <Position X="12.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IPhysicalObject.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Tahoma" Size="8.25" />

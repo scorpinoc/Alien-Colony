@@ -35,7 +35,7 @@
   <Class Name="Data.DataContainer" Collapsed="true">
     <Position X="9.25" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAAAwAAAAEAAAAQAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAABAAAAAAwAAAAEAAAAQAQAAEAAAAAAAQAAAAAAA=</HashCode>
       <FileName>DataContainer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -46,6 +46,9 @@
       <HashCode>gAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\RandomPositionAction.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Rand" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Data.Data.JobActions.MultiTargetPositionAction">
     <Position X="7.5" Y="4.5" Width="2" />
@@ -67,6 +70,10 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAACCAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Data\JobActions\SingleTargetPositionAction.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="System.Random" Collapsed="true">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
   </Class>
   <Enum Name="Data.Data.Direction" Collapsed="true">
     <Position X="0.5" Y="5" Width="1.5" />

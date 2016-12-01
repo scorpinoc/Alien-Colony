@@ -48,6 +48,7 @@
     <Compile Include="Data\JobActions\MultiTargetPositionAction.cs" />
     <Compile Include="Data\JobActions\SingleTargetPositionAction.cs" />
     <Compile Include="Data\Jobs\MultiModuleJob.cs" />
+    <Compile Include="Data\Building.cs" />
     <Compile Include="Interfaces\IJobable.cs" />
     <Compile Include="Data\JobActions\JobAction.cs" />
     <Compile Include="Interfaces\INameble.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Data\Common\Position.cs" />
     <Compile Include="Data\Jobs\ModuleJob.cs" />
     <Compile Include="Data\Jobs\MovingModuleJob.cs" />
+    <Compile Include="Interfaces\IPhysicalObject.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

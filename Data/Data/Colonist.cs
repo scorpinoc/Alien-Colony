@@ -26,7 +26,7 @@ namespace Data.Data
 
     #endregion
 
-    public class Colonist : INameble
+    public class Colonist : IPhysicalObject
     {
         #region static
 
@@ -43,7 +43,7 @@ namespace Data.Data
         {
             Sleeping,
             CriticalNeedSleep,
-            NeedSleep,
+            WarningNeedSleep,
 
             Work,
         }
@@ -53,9 +53,9 @@ namespace Data.Data
         /// </summary>
         public enum StatusType
         {
+            Out,
             Critical,
             Warning,
-            InNeed,
             Normal,
         }
         #endregion
@@ -73,6 +73,7 @@ namespace Data.Data
 
         public string Name { get; }
         public Position Position { get; }
+        public ObjectType ObjectType { get; }
         public Doing CurrentDoing { get; private set; }
 
         #endregion
@@ -90,15 +91,18 @@ namespace Data.Data
 
         #region constructors
 
-        public Colonist(string name) : this(name, new Position())
+        public Colonist(string name)
+            : this(name, new Position())
         {
         }
 
-        public Colonist(string name, Position position) : this(name, position, new MoveTest() /* TODO : change to basic _job*/)
+        public Colonist(string name, Position position)
+            : this(name, position, new MoveTest() /* TODO : change to basic _job*/)
         {
         }
 
-        public Colonist(string name, Position position, IJobable job) : this(name, position, job, new ColonistEnergy())
+        public Colonist(string name, Position position, IJobable job)
+            : this(name, position, job, new ColonistEnergy())
         {
         }
 
@@ -136,6 +140,7 @@ namespace Data.Data
             _energy = energy;
 
             CurrentDoing = Work;
+            ObjectType = ObjectType.Unit;
         }
 
         #endregion
@@ -261,14 +266,14 @@ namespace Data.Data
         {
             switch (_energy.Tick(CurrentDoing != Work)) // todo rework on variant of balanced sleep situation
             {
-                case StatusType.Critical:
+                case StatusType.Out:
                     CurrentDoing = Sleeping;
                     break;
-                case StatusType.Warning:
+                case StatusType.Critical:
                     CurrentDoing = CriticalNeedSleep;
                     break;
-                case StatusType.InNeed:
-                    CurrentDoing = NeedSleep;
+                case StatusType.Warning:
+                    CurrentDoing = WarningNeedSleep;
                     break;
                 case StatusType.Normal:
                     CurrentDoing = Work;
