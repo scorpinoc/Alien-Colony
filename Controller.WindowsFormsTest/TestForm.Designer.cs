@@ -28,41 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.mapPicture = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ColonistsList = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.mapPicture = new System.Windows.Forms.PictureBox();
+            this.BuildingsList = new System.Windows.Forms.ListBox();
+            this.ColonistsList = new System.Windows.Forms.DataGridView();
+            this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapPicture)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ColonistsList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
-            this.tableLayoutPanel1.Controls.Add(this.mapPicture, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.ColonistsList, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(594, 451);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // mapPicture
-            // 
-            this.mapPicture.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mapPicture.Location = new System.Drawing.Point(4, 4);
-            this.mapPicture.Name = "mapPicture";
-            this.mapPicture.Size = new System.Drawing.Size(430, 443);
-            this.mapPicture.TabIndex = 1;
-            this.mapPicture.TabStop = false;
             // 
             // menuStrip1
             // 
@@ -81,14 +57,57 @@
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startButton_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 147F));
+            this.tableLayoutPanel1.Controls.Add(this.mapPicture, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.BuildingsList, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.ColonistsList, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(594, 451);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // mapPicture
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.mapPicture, 2);
+            this.mapPicture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapPicture.Location = new System.Drawing.Point(3, 3);
+            this.mapPicture.Name = "mapPicture";
+            this.mapPicture.Size = new System.Drawing.Size(588, 219);
+            this.mapPicture.TabIndex = 0;
+            this.mapPicture.TabStop = false;
+            // 
+            // BuildingsList
+            // 
+            this.BuildingsList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BuildingsList.FormattingEnabled = true;
+            this.BuildingsList.Location = new System.Drawing.Point(450, 228);
+            this.BuildingsList.Name = "BuildingsList";
+            this.BuildingsList.Size = new System.Drawing.Size(141, 220);
+            this.BuildingsList.TabIndex = 1;
+            // 
             // ColonistsList
             // 
+            this.ColonistsList.AllowUserToAddRows = false;
+            this.ColonistsList.AllowUserToDeleteRows = false;
+            this.ColonistsList.AllowUserToOrderColumns = true;
+            this.ColonistsList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.ColonistsList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.ColonistsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.ColonistsList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ColonistsList.Location = new System.Drawing.Point(441, 4);
+            this.ColonistsList.Location = new System.Drawing.Point(3, 228);
             this.ColonistsList.Name = "ColonistsList";
-            this.ColonistsList.Size = new System.Drawing.Size(149, 443);
+            this.ColonistsList.ReadOnly = true;
+            this.ColonistsList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.ColonistsList.Size = new System.Drawing.Size(441, 220);
             this.ColonistsList.TabIndex = 2;
-            this.ColonistsList.TabStop = false;
             // 
             // TestForm
             // 
@@ -103,10 +122,10 @@
             this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "TestForm";
             this.Text = "TestForm";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.mapPicture)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.mapPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ColonistsList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -114,12 +133,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.PictureBox mapPicture;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
-        private System.Windows.Forms.PictureBox ColonistsList;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.PictureBox mapPicture;
+        private System.Windows.Forms.ListBox BuildingsList;
+        private System.Windows.Forms.DataGridView ColonistsList;
     }
 }
 

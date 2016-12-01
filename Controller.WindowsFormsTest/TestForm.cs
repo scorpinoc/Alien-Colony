@@ -1,19 +1,14 @@
-﻿//using Controller;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Data;
 using Data.Data;
 using Data.Data.Common;
 using Data.Data.JobActions;
 using Data.Data.Jobs;
+using Data.Interfaces;
 
 namespace Controller.WindowsFormsTest
 {
@@ -32,15 +27,56 @@ namespace Controller.WindowsFormsTest
 
         private DataContainer GenerateColony()
         {
-            var obj = new DataContainer("Test Colony", new Position((uint)mapPicture.Size.Width, (uint)mapPicture.Size.Height));
+            var obj = new DataContainer("Test Colony",
+                new Position((uint)mapPicture.Size.Width, (uint)mapPicture.Size.Height));
             var c = 'A';
-            var job = new MultiModuleJob("Testing main job - {SingleTargetPositionAction to the center}", obj, new MovingModuleJob("test",
-                new MoveAction(new SingleTargetPositionAction(obj, data => new Position((uint)(mapPicture.Size.Width / 2), (uint)(mapPicture.Size.Height / 2))))));
-            obj.Add(job);
+            var homes = new[]
+            {
+                "CenterHome",
+                "WorkPlaceHome",
+                "WorkPlace"
+            };
+            obj.Add(new MultiModuleJob(homes[0], obj,
+                new MovingModuleJob("test",
+                    new MoveAction(new SingleTargetPositionAction(obj,
+                        data => new Position((uint)(mapPicture.Size.Width / 2), (uint)(mapPicture.Size.Height / 2)))))));
+            obj.Add(new MultiModuleJob(homes[1], obj,
+                new MovingModuleJob("test",
+                    new MoveAction(new MultiTargetPositionAction(obj,
+                        data =>
+                            data.Buildings.Where(building => building.Name == homes[2])
+                                .Select(building => building.Position))))));
+
             var rand = new Random();
+
             for (var i = 0; i < 7; ++i)
-                obj.Add(new Colonist((c++).ToString(), new Position((uint)rand.Next(0, mapPicture.Size.Width), (uint)rand.Next(0, mapPicture.Size.Height)), job));
+                obj.Add(new Colonist(c++.ToString(),
+                    new Position((uint)rand.Next(mapPicture.Size.Width - 10),
+                        (uint)rand.Next(mapPicture.Size.Height - 10)),
+                    obj.Jobs.OrderBy(jobable => rand.Next(2) == 0).First()));
+
+            foreach (var i in homes)
+                obj.Add(new Building(i,
+                    new Position((uint)rand.Next(mapPicture.Size.Width - 10),
+                        (uint)rand.Next(mapPicture.Size.Height - 10))));
+
+            for (var i = 0; i < 4; i++)
+                obj.Add(new Building(homes.OrderBy(s => rand.Next(2) == 0).First(),
+                    new Position((uint)rand.Next(mapPicture.Size.Width - 50),
+                        (uint)rand.Next(mapPicture.Size.Height - 50))));
+
+            BuildingsList.DataSource = obj.Buildings.Select(building => building.ListPrint()).ToList();
+            ColonistsList.DataSource = obj.Colonists;
+
             return obj;
+        }
+
+        private void ColonistsListRefresh()
+        {
+            if (ColonistsList.InvokeRequired)
+                ColonistsList.Invoke(new Action(ColonistsListRefresh));
+            else
+                ColonistsList.Refresh();
         }
 
         private void ColonyControllerOnCollectionChanged_ToMap(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
@@ -49,35 +85,27 @@ namespace Controller.WindowsFormsTest
             using (var g = Graphics.FromImage(pic))
             {
                 g.Clear(BackColor);
-                var brush = new SolidBrush(Color.Crimson);
-
-                foreach (var i in ColonyController.Colonists)
+                var brush = new[]
+                {
+                    new SolidBrush(Color.Crimson),
+                    new SolidBrush(Color.LightSeaGreen)
+                };
+                foreach (var i in ColonyController.PhysicalObjects)
                 {
                     var point = new Point((int)i.Position.X, (int)i.Position.Y);
-                    g.FillEllipse(brush, new Rectangle(point, new Size(-10, -10)));
-                    g.DrawString($"{i.Name} {{{i.CurrentDoing}}}", DefaultFont, brush, point);
+                    var tmpBrush = brush[i.ObjectType == ObjectType.Unit ? 0 : 1];
+                    g.FillEllipse(tmpBrush, new Rectangle(point, new Size(-10, -10)));
+                    g.DrawString(i.Name, DefaultFont, tmpBrush, point);
                 }
-                g.FillEllipse(new SolidBrush(Color.ForestGreen), new Rectangle(new Point(mapPicture.Size.Width / 2, mapPicture.Size.Height / 2), new Size(-10, -10)));
+                g.FillEllipse(new SolidBrush(Color.ForestGreen),
+                    new Rectangle(new Point(mapPicture.Size.Width / 2, mapPicture.Size.Height / 2), new Size(-10, -10)));
                 g.Dispose();
             }
             mapPicture.Image = pic;
         }
 
         private void ColonyControllerOnCollectionChanged_ToList(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
-        {
-            var pic = new Bitmap(ColonistsList.Size.Width, ColonistsList.Size.Height);
-            using (var g = Graphics.FromImage(pic))
-            {
-                g.Clear(BackColor);
-                var brush = new SolidBrush(Color.Black);
-                var line = 0;
-                foreach (var i in ColonyController.Colonists.Select(colonist
-                        => $"{colonist.Name} {colonist.Position.ToString().PadRight(15)} {colonist.Energy.ToString().PadLeft(4)} | {colonist.EnergyPersent:f1}%"))
-                    g.DrawString(i, DefaultFont, brush, new Point(5, DefaultFont.Height * ++line));
-                g.Dispose();
-            }
-            ColonistsList.Image = pic;
-        }
+            => ColonistsListRefresh();
 
         private void startButton_Click(object sender, EventArgs e)
             => ColonyController.Start();

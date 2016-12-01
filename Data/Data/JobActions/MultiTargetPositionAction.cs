@@ -15,6 +15,6 @@ namespace Data.Data.JobActions
         }
 
         public override Position Target(Colonist worker)
-            => FindTargetsFunc(OwnerContainer).OrderBy(p => p.Distance(worker.Position)).First();
+            => FindTargetsFunc(OwnerContainer).OrderBy(p => p.Distance(worker.Position)).First();   // todo check for null result
     }
 }

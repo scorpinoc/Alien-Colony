@@ -35,12 +35,12 @@ namespace Controller
 
         #region delegate
         public IEnumerable<Colonist> Colonists => ColonyContainer.Colonists;
+        public IEnumerable<IPhysicalObject> PhysicalObjects => ColonyContainer.PhysicalObjects; 
         #endregion
 
         #endregion
 
         #region constructors
-
         public ColonyController(DataContainer colonyContainer)
         {
             ColonyContainer = colonyContainer;
@@ -51,7 +51,7 @@ namespace Controller
         #region methods
         public void Start()
         {
-            Timer = new Timer(1000);
+            Timer = new Timer(500);
             Timer.Elapsed += TickOnElapsed;
             Timer.Start();
         }
